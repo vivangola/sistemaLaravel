@@ -14,7 +14,8 @@ class CreateEstadoTable extends Migration
     public function up()
     {
         Schema::create('estado', function (Blueprint $table) {
-            $table->string('uf')->unique();
+            $table->string('uf');
+            $table->primary('uf');
             $table->string('estado');
             $table->timestamps();
         });

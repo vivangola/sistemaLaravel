@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Http\Models\EstadoModel;
+use App\Models\EstadoModel;
 
 class EstadoSeeder extends Seeder
 {

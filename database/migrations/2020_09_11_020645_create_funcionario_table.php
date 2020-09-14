@@ -15,21 +15,22 @@ class CreateFuncionarioTable extends Migration
     {
         
         Schema::create('funcionario', function (Blueprint $table) {
-            $table->string('cpf')->unique();
-            $table->string('rg');
+            $table->increments('id');
+            $table->string('cpf');
+            $table->string('rg')->nullable();
             $table->string('nome');
-            $table->string('sexo');
+            $table->string('sexo')->nullable();
             $table->string('telefone');
-            $table->string('email');
-            $table->string('cargo');
-            $table->string('endereco');
-            $table->integer('numero');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('fk_uf');
-            $table->foreign('fk_uf')->references('uf')->on('estado')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('cep');
-            $table->date('nascimento');
+            $table->string('email')->nullable();
+            $table->string('cargo')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('fk_estado')->nullable();
+            $table->foreign('fk_estado')->references('uf')->on('estado')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('cep')->nullable();
+            $table->date('nascimento')->nullable();
             $table->timestamps();
         });
     }

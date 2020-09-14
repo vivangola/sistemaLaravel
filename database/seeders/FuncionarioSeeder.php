@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Http\Models\FuncionarioModel;
+use App\Models\FuncionarioModel;
 
 class FuncionarioSeeder extends Seeder
 {
@@ -23,10 +23,10 @@ class FuncionarioSeeder extends Seeder
             'email' => 'junior.perez@outlook.com.br',
             'cargo' => 'Desenvolvedor',
             'endereco' => '',
-            'numero' => 0,
+            'numero' => '',
             'bairro' => '',
             'cidade' => 'Ipaussu',
-            'fk_uf' => 'SP',
+            'fk_estado' => 'SP',
             'cep' => '18950-000',
             'nascimento' => '1996-10-26'
         ]);

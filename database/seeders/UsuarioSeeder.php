@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Http\Models\UsuarioModel;
+use App\Models\User;
 
 class UsuarioSeeder extends Seeder
 {
@@ -12,14 +12,14 @@ class UsuarioSeeder extends Seeder
      *
      * @return void
      */
-    public function run(UsuarioModel $usuario)
+    public function run(User $usuario)
     {
         $usuario->create([
             'login' => 'master',
-            'password' => 'master',
+            'password' => bcrypt('master'),
             'tipo' => 1,
             'fk_status' => 1,
-            'fk_funcionario' => '99999999999'
+            'fk_funcionario' => 1
         ]);
     }
 }

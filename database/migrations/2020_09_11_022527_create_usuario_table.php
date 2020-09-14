@@ -15,13 +15,14 @@ class CreateUsuarioTable extends Migration
     {
         Schema::create('usuario', function (Blueprint $table) {
             
-            $table->string('login')->unique();
+            $table->string('login');
+            $table->primary('login');
             $table->string('password');
             $table->integer('tipo');
+            $table->integer('fk_funcionario')->unsigned();
+            $table->foreign('fk_funcionario')->references('id')->on('funcionario')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('fk_status');
             $table->foreign('fk_status')->references('cod')->on('tipo_status')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('fk_funcionario');
-            $table->foreign('fk_funcionario')->references('cpf')->on('funcionario')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             
         });

@@ -15,6 +15,7 @@ class CreateTipoStatusTable extends Migration
     {
         Schema::create('tipo_status', function (Blueprint $table) {
             $table->integer('cod');
+            $table->primary('cod');
             $table->string('status');
             $table->timestamps();
         });

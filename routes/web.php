@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::get('/', 'Auth\LoginController@index');
+
+Route::group(['middleware' => ['auth']], function(){
+    
+    Route::get('/home', 'HomeController@index');
+    Route::get('/logout','Auth\LoginController@logout');
+    Route::get('/acesso','UsuarioController@index');
+    Route::resource('/funcionarios','FuncionarioController');
+
 });
