@@ -131,7 +131,6 @@ class FuncionarioController extends Controller
         try {             
             $this->funcionario->destroy($id);
         }catch(QueryException $ex){ 
-            dd($ex);
             return back()->with('error', 'Erro ao Excluir');
         }        
             

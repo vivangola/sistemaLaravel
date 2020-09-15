@@ -140,9 +140,4 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ url('assets/js/plugins/sweetalert.min.js') }}"></script>
-<script type="text/javascript">
-    @if (session('error'))
-          swal("Atenção!", "{{ session('error') }}", "error");
-    @endif
-</script>
 @endsection

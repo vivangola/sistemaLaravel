@@ -98,8 +98,8 @@
           <li><a class="app-menu__item active" href="/"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Cadastros</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item" href="/acesso"><i class="icon fa fa-circle-o"></i>Acesso</a></li>
-              <li><a class="treeview-item" href="/funcionarios"><i class="icon fa fa-circle-o"></i>Funcionário</a></li>
+              <li><a class="treeview-item" href="/usuarios"><i class="icon fa fa-circle-o"></i>Usuários</a></li>
+              <li><a class="treeview-item" href="/funcionarios"><i class="icon fa fa-circle-o"></i>Funcionários</a></li>
             </ul>
           </li>
           <!--li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>

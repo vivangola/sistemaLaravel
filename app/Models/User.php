@@ -10,17 +10,22 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $table = 'usuario';
-    protected $primaryKey = 'login';
+    //protected $primaryKey = 'username';
     
     protected $fillable = [
-        'login', 'senha',
+        'username', 'password', 'tipo', 'fk_status', 'fk_funcionario',
     ];
 
     protected $hidden = [
-        'senha'
+        'password'
     ];
 
-    public function relBooks(){
-        return $this->hasMany('App\Models\ModelBook', 'id_user');
+    public function funcionario(){
+        return $this->hasOne('App\Models\FuncionarioModel', 'id', 'fk_funcionario');
     }
+
+    public function status(){
+        return $this->hasOne('App\Models\StatusModel', 'cod', 'fk_status');
+    }
+
 }

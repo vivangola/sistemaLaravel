@@ -61,11 +61,11 @@ class LoginController extends Controller
         ]);
         
         $lembrar = !empty($request->lembrar);
-        $usuario = User::where('login', $request->login)->first();
-        
+        $usuario = User::where('username', $request->login)->first();
+
         if(!empty($usuario)){
             if(Hash::check($request->senha, $usuario->password)){
-                Auth::loginUsingId($usuario->login, $lembrar);
+                Auth::loginUsingId($usuario->id, $lembrar);
                 return redirect()->action('Auth\LoginController@index');
             }else{
                 return redirect()->back()->withInput()->withErrors(['Senha inválida!']);    

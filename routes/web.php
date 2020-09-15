@@ -20,7 +20,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/home', 'HomeController@index');
     Route::get('/logout','Auth\LoginController@logout');
-    Route::get('/acesso','UsuarioController@index');
     Route::resource('/funcionarios','FuncionarioController');
+    Route::resource('/usuarios','UsuarioController');
 
 });

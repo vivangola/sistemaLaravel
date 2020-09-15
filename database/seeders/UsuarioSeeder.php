@@ -15,7 +15,7 @@ class UsuarioSeeder extends Seeder
     public function run(User $usuario)
     {
         $usuario->create([
-            'login' => 'master',
+            'username' => 'master',
             'password' => bcrypt('master'),
             'tipo' => 1,
             'fk_status' => 1,

@@ -1,7 +1,7 @@
 @extends('templates.template')
-@section('title','Funcionários')
+@section('title','Usuários')
 
-@section('titulo','FUNCIONÁRIOS')
+@section('titulo','USUÁRIOS')
 @section('icone','fa fa-user')
 
 @section('content')
@@ -12,7 +12,7 @@
               <div class="tile-body">
                   <div class="row mr-4 mt-2">
                       <div class="text-right col-md-12">
-                          <a href="/funcionarios/create">
+                          <a href="/usuarios/create">
                               <button class="btn btn-primary" style="width:100px">Novo &nbsp;<i class="fa fa-plus"></i></button>
                           </a>
                       </div>
@@ -23,30 +23,28 @@
                           <table class="table table-bordered table-striped" id="tblDados">
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
-                                      <th>Nome</th>
-                                      <th>CPF</th>
-                                      <th>Cargo</th>
-                                      <th>Telefone</th>
-                                      <th>Email</th>
+                                      <th>Login</th>
+                                      <th>Funcionário</th>
+                                      <th>Status</th>
+                                      <th>Tipo</th>
                                       <th></th>
                                       <th></th>
                                   </tr>
                               </thead>
                               <tbody>
-                                @foreach($funcionarios as $dados)
+                                @foreach($usuarios as $dados)
                                   <tr>
-                                      <td>{{$dados->nome}}</td>
-                                      <td>{{$dados->cpf}}</td>
-                                      <td>{{$dados->cargo}}</td>
-                                      <td>{{$dados->telefone}}</td>
-                                      <td>{{$dados->email}}</td>
+                                      <td class="text-center">{{ $dados->username }}</td>
+                                      <td>{{ $dados->funcionario->nome }}</td>
+                                      <td class="text-center">{{ $dados->status->status }}</td>
+                                      <td class="text-center">{{ $dados->tipo == 1 ? 'Administrador' : 'Usuário' }}</td>
                                       <td align="center">
-                                        <a href="{{url("funcionarios/$dados->id/edit")}}">
+                                        <a href="{{url("usuarios/$dados->id/edit")}}">
                                           <button class="btn btn-primary">Editar</button>
                                         </a>
                                       </td>
                                       <td align="center">
-                                        {!! Form::open(['action' => ['FuncionarioController@destroy', $dados->id], 'method'=> 'POST']) !!}
+                                        {!! Form::open(['action' => ['UsuarioController@destroy', $dados->id], 'method'=> 'POST']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
