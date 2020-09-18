@@ -6,16 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFuncionarioTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
-        
-        Schema::create('funcionario', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('funcionarios', function (Blueprint $table) {
+            $table->id();
             $table->string('cpf');
             $table->string('rg')->nullable();
             $table->string('nome');
@@ -27,8 +22,8 @@ class CreateFuncionarioTable extends Migration
             $table->string('numero')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cidade')->nullable();
-            $table->string('fk_estado')->nullable();
-            $table->foreign('fk_estado')->references('uf')->on('estado')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('estado_uf')->nullable();
+            $table->foreign('estado_uf')->references('uf')->on('estados')->onDelete('cascade')->onUpdate('cascade');
             $table->string('cep')->nullable();
             $table->date('nascimento')->nullable();
             $table->timestamps();

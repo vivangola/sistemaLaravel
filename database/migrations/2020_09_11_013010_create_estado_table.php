@@ -6,14 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEstadoTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
-        Schema::create('estado', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->string('uf');
             $table->primary('uf');
             $table->string('estado');
@@ -28,6 +24,6 @@ class CreateEstadoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado');
+        Schema::dropIfExists('estados');
     }
 }

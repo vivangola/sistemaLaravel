@@ -19,14 +19,14 @@
             <hr>
             <div class="tile-body">
                 <div class="col-md-12">
-                    <form name="frmNovo" class='crud' method="POST" action="{{ url("usuarios/$usuarios->id") }}">
+                    <form name="frmNovo" class='crud' method="POST" action="{{ url("usuarios/$usuario->id") }}">
                         @method('PUT')
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Login</label>
-                                    <input class="pull-center form-control" type="text" name="login" placeholder="" value="{{ $usuarios->username }}" required>
+                                    <input class="pull-center form-control" type="text" name="login" placeholder="" value="{{ $usuario->username }}" required>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                     <label class="control-label">Status</label>
                                     <select class="form-control" name="status">
                                         @foreach($status as $dados)
-                                        <option value="{{ $dados->cod }}" @if($usuarios->fk_status == $dados->cod) selected @endif>{{ $dados->status }}</option>
+                                        <option value="{{ $dados->id }}" @if($usuario->tipo_status_id == $dados->id) selected @endif>{{ $dados->status }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -65,7 +65,7 @@
                                     <select class="form-control" name="funcionario">
                                         <option value="">Selecione</option>
                                         @foreach($funcionarios as $dados)
-                                        <option value="{{ $dados->id }}" @if($usuarios->fk_funcionario == $dados->id) selected @endif >{{ $dados->nome }}</option>
+                                        <option value="{{ $dados->id }}" @if($usuario->funcionario_id == $dados->id) selected @endif >{{ $dados->nome }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -76,11 +76,11 @@
                                 <label class="control-label">Tipo</label>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="1" @if($usuarios->tipo == '1') checked @endif>Administrador
+                                        <input class="form-check-input" type="radio" name="tipo" value="1" @if($usuario->tipo == '1') checked @endif>Administrador
                                     </label>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="0" @if($usuarios->tipo == '0') checked @endif>Usuário
+                                        <input class="form-check-input" type="radio" name="tipo" value="0" @if($usuario->tipo == '0') checked @endif>Usuário
                                     </label>
                                 </div>
                             </div>

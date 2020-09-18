@@ -15,15 +15,15 @@ class StatusSeeder extends Seeder
     public function run(StatusModel $status)
     {
         $status->create([
-            'cod' => '1',
+            'id' => '1',
             'status' => 'Ativo'
         ]);
         $status->create([
-            'cod' => '0',
+            'id' => '0',
             'status' => 'Inativo'
         ]);
         $status->create([
-            'cod' => '2',
+            'id' => '2',
             'status' => 'Em Débito'
         ]);
     }

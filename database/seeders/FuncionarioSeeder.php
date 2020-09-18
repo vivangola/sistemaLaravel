@@ -26,7 +26,7 @@ class FuncionarioSeeder extends Seeder
             'numero' => '',
             'bairro' => '',
             'cidade' => 'Ipaussu',
-            'fk_estado' => 'SP',
+            'estado_uf' => 'SP',
             'cep' => '18950-000',
             'nascimento' => '1996-10-26'
         ]);

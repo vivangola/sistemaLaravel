@@ -72,7 +72,7 @@
                                 <select class="form-control" name="estado">
                                     <option value="">Selecione</option>
                                     @foreach($estados as $estado)
-                                        <option value="{{$estado->uf}}" @if($funcionario->fk_uf == $estado->uf) selected @endif >{{$estado->estado}}</option>
+                                        <option value="{{$estado->uf}}" @if($funcionario->estado_uf == $estado->uf) selected @endif >{{$estado->estado}}</option>
                                     @endforeach
                                 </select>
                             </div>

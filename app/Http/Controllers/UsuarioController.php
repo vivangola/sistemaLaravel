@@ -30,7 +30,7 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $status=$this->status->all()->where('cod','<>',2)->sortby('status');
+        $status=$this->status->all()->where('id','<>',2)->sortby('status');
         $funcionarios=$this->funcionarios->all()->where('id','<>',1);
         return view('usuarios.novo', compact('status', 'funcionarios'));
     }
@@ -38,12 +38,12 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'login' => 'required|unique:usuario,username',
+            'login' => 'required|unique:usuarios,username',
             'senha' => 'required',
             'confirmacao' => 'required|same:senha',
-            'status' => 'required|in:0,1,2',
+            'status' => 'required|numeric|exists:tipo_status,id',
             'tipo' => 'required|in:0,1',
-            'funcionario' => 'required|exists:funcionario,id|unique:usuario,fk_funcionario'
+            'funcionario' => 'required|exists:funcionarios,id|unique:usuarios,funcionario_id'
         ]);
 
         try{
@@ -51,8 +51,8 @@ class UsuarioController extends Controller
                 'username' => $request->login,
                 'password' => bcrypt($request->senha),
                 'tipo' => $request->tipo,
-                'fk_status' => $request->status,
-                'fk_funcionario' => $request->funcionario
+                'tipo_status_id' => $request->status,
+                'funcionario_id' => $request->funcionario
             ]);
         }catch(QueryException $ex){ 
             return json_encode([
@@ -74,21 +74,21 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
-        $usuarios=$this->usuarios->find($id);
-        $status=$this->status->all()->where('cod','<>',2)->sortby('status');
+        $usuario=$this->usuarios->find($id);
+        $status=$this->status->all()->where('id','<>',2)->sortby('status');
         $funcionarios=$this->funcionarios->all()->where('id','<>',1);
-        return view('usuarios.editar', compact('usuarios', 'status', 'funcionarios'));
+        return view('usuarios.editar', compact('usuario', 'status', 'funcionarios'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'login' => 'required|unique:usuario,username,'.$id,
+            'login' => 'required|unique:usuarios,username,'.$id,
             'senha' => 'required',
             'confirmacao' => 'required|same:senha',
-            'status' => 'required|in:0,1,2',
+            'status' => 'required|numeric|exists:tipo_status,id',
             'tipo' => 'required|in:0,1',
-            'funcionario' => 'required|exists:funcionario,id|unique:usuario,fk_funcionario,'.$id
+            'funcionario' => 'required|exists:funcionarios,id|unique:usuarios,funcionario_id,'.$id
         ]);
 
         try{
@@ -96,8 +96,8 @@ class UsuarioController extends Controller
                 'username' => $request->login,
                 'password' => bcrypt($request->senha),
                 'tipo' => $request->tipo,
-                'fk_status' => $request->status,
-                'fk_funcionario' => $request->funcionario
+                'tipo_status_id' => $request->status,
+                'funcionario_id' => $request->funcionario
             ]);
         }catch(QueryException $ex){ 
             return json_encode([

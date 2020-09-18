@@ -1,7 +1,7 @@
 @extends('templates.template')
-@section('title','Usuários')
+@section('title','Planos')
 
-@section('titulo','USUÁRIOS')
+@section('titulo','PLANOS')
 @section('icone','fa fa-users')
 
 @section('content')
@@ -13,35 +13,36 @@
         <div class="tile">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="tile-title">Cadastrar Usuário</h3>
+                    <h3 class="tile-title">Editar Planos</h3>
                 </div>
             </div>
             <hr>
             <div class="tile-body">
                 <div class="col-md-12">
-                    <form name="frmNovo" class='crud' method="POST" action="{{ url('usuarios') }}">
+                    <form name="frmNovo" class='crud' method="POST" action="{{ url("planos/$plano->id") }}">
+                        @method('PUT')
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Login</label>
-                                    <input class="pull-center form-control" type="text" name="login" placeholder="" required>
+                                    <label class="control-label">Plano</label>
+                                    <input class="pull-center form-control" type="text" name="plano" placeholder="" value="{{ $plano->plano }}" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Senha</label>
-                                    <input class="pull-center form-control" type="password" name="senha" placeholder="" required>
+                                    <label class="control-label">Mensalidade</label>
+                                    <input class="pull-center form-control" type="text" name="mensalidade" placeholder="" value="{{ $plano->mensalidade }}" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Confirmação de Senha</label>
-                                    <input class="pull-center form-control" type="password" name="confirmacao" placeholder="" >
+                                    <label class="control-label">Dependentes</label>
+                                    <input class="pull-center form-control" type="numeric" name="dependentes" placeholder="" value="{{ $plano->dependentes }}" required>
                                 </div>
                             </div>
                         </div>
@@ -49,9 +50,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Status</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control" name="status" required>
                                         @foreach($status as $dados)
-                                        <option value="{{ $dados->id }}">{{ $dados->status }}</option>
+                                        <option value="{{ $dados->id }}" @if($plano->tipo_status_id == $dados->id) selected @endif>{{ $dados->status }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -60,34 +61,20 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">Funcionário</label>
-                                    <select class="form-control" name="funcionario">
-                                        <option value="">Selecione</option>
-                                        @foreach($funcionarios as $dados)
-                                        <option value="{{ $dados->id }}">{{ $dados->nome }}</option>
-                                        @endforeach
+                                    <label class="control-label">Carência</label>
+                                    <select class="form-control" name="carencia" required>
+                                        <option value="1">1 Mês</option>
+                                        @for($i=2;$i<=12;$i++)
+                                            <option value="{{ $i }}" @if($i == $plano->carencia) selected @endif >{{ $i.' Meses'}}</option>
+                                        @endfor
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="control-label">Tipo</label>
-                                <div class="form-check text-center">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="1">Administrador
-                                    </label>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="0">Usuário
-                                    </label>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <a href="{{ url('usuarios') }}">
+                                <a href="{{ url('planos') }}">
                                     <button type="button" class="btn btn-primary" style="width:100px"><i
                                             class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                                 </a>&nbsp;

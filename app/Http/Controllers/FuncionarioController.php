@@ -34,7 +34,7 @@ class FuncionarioController extends Controller
     {
 
         $this->validate($request,[
-            'cpf' => 'required|unique:funcionario',
+            'cpf' => 'required|unique:funcionarios',
             'nome' => 'required|string',
             'sexo' => 'nullable|in:M,F',
             'email' => 'nullable|email:rfc,dns',
@@ -54,7 +54,7 @@ class FuncionarioController extends Controller
                 'numero' => $request->numero,
                 'bairro' => $request->bairro,
                 'cidade' => $request->cidade,
-                'fk_estado' => $request->estado,
+                'estado_uf' => $request->estado,
                 'cep' => $request->cep,
                 'nascimento' => $request->nascimento
             ]);
@@ -88,7 +88,7 @@ class FuncionarioController extends Controller
     {
 
         $this->validate($request,[
-            'cpf' => 'required|unique:funcionario,cpf,'.$id,
+            'cpf' => 'required|unique:funcionarios,cpf,'.$id,
             'nome' => 'required|string',
             'sexo' => 'nullable|in:M,F',
             'email' => 'nullable|email:rfc,dns',
@@ -108,7 +108,7 @@ class FuncionarioController extends Controller
                 'numero' => $request->numero,
                 'bairro' => $request->bairro,
                 'cidade' => $request->cidade,
-                'fk_estado' => $request->estado,
+                'estado_uf' => $request->estado,
                 'cep' => $request->cep,
                 'nascimento' => $request->nascimento
             ]);

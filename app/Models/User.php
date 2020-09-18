@@ -9,11 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'usuario';
-    //protected $primaryKey = 'username';
+    protected $table = 'usuarios';
     
     protected $fillable = [
-        'username', 'password', 'tipo', 'fk_status', 'fk_funcionario',
+        'username', 'password', 'tipo', 'tipo_status_id', 'funcionario_id',
     ];
 
     protected $hidden = [
@@ -21,11 +20,11 @@ class User extends Authenticatable
     ];
 
     public function funcionario(){
-        return $this->hasOne('App\Models\FuncionarioModel', 'id', 'fk_funcionario');
+        return $this->hasOne('App\Models\FuncionarioModel', 'id', 'funcionario_id');
     }
 
     public function status(){
-        return $this->hasOne('App\Models\StatusModel', 'cod', 'fk_status');
+        return $this->hasOne('App\Models\StatusModel', 'id', 'tipo_status_id');
     }
 
 }

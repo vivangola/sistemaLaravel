@@ -18,8 +18,8 @@ class UsuarioSeeder extends Seeder
             'username' => 'master',
             'password' => bcrypt('master'),
             'tipo' => 1,
-            'fk_status' => 1,
-            'fk_funcionario' => 1
+            'tipo_status_id' => 1,
+            'funcionario_id' => 1
         ]);
     }
 }
