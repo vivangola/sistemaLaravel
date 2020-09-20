@@ -20,6 +20,7 @@ class CreateUsuarioTable extends Migration
             $table->integer('tipo');
             $table->foreignId('funcionario_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('tipo_status_id')->constrained('tipo_status')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('remember_token')->nullable();
             //$table->integer('fk_funcionario')->unsigned();
             //$table->foreign('fk_funcionario')->references('id')->on('funcionario')->onDelete('cascade')->onUpdate('cascade');
             //$table->integer('fk_status');

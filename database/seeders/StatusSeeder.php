@@ -7,11 +7,7 @@ use App\Models\StatusModel;
 
 class StatusSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run(StatusModel $status)
     {
         $status->create([

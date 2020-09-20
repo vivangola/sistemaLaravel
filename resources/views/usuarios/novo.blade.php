@@ -70,9 +70,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row m-1">
                             <div class="col-md-12">
-                                <label class="control-label">Tipo</label>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="tipo" value="1">Administrador

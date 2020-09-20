@@ -7,11 +7,7 @@ use App\Models\EstadoModel;
 
 class EstadoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run(EstadoModel $estado)
     {
         $estado->create([

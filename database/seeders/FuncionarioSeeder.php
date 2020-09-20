@@ -7,11 +7,7 @@ use App\Models\FuncionarioModel;
 
 class FuncionarioSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run(FuncionarioModel $funcionario)
     {
         $funcionario->create([
