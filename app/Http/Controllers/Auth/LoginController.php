@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\FuncionarioModel;
 use Hash;
 use Auth;
 use Session;
@@ -26,18 +27,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -65,7 +56,14 @@ class LoginController extends Controller
 
         if(!empty($usuario)){
             if(Hash::check($request->senha, $usuario->password)){
+                
                 Auth::loginUsingId($usuario->id, $lembrar);
+                Session::put(['user' => [
+                    'nome' => explode(' ',$usuario->funcionario->nome)[0],
+                    'cargo' => $usuario->funcionario->cargo,
+                    'tipo' => $usuario->tipo
+                ]]);
+                
                 return redirect()->action('Auth\LoginController@index');
             }else{
                 return redirect()->back()->withInput()->withErrors(['Senha inválida!']);    

@@ -14955,9 +14955,9 @@ be a descendant of the grid when it is being dragged.
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
-  font-family: 'Niconne';
+  font-family: fantasy, sans-serif;
   padding: 0 15px;
   font-size: 26px;
   font-weight: 400;
@@ -15005,7 +15005,7 @@ be a descendant of the grid when it is being dragged.
 
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
   color: #fff;
-  background-color: #00635a;
+  background-color: #18232d;
   text-decoration: none;
 }
 
@@ -15038,7 +15038,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-nav__item:hover, .app-nav__item:focus {
-  background: rgba(0, 0, 0, 0.1);
+  background: #18232d;
   color: #f6f6f6;
 }
 
