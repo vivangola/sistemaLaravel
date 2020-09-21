@@ -1,0 +1,20 @@
+-- baixar/instalar composer
+composer require install/laravel --instalar laravel
+
+-- clonar projeto git
+composer install 
+composer update
+composer
+
+-- caso nao tenha .env
+echo. 2>.env -- cria um arquivo .env
+-- copia conteudo .env.example para o .env
+-- altera dados: db_database, db_username, db_password
+php artisan key:generate
+
+criar banco codificacao 'utf8mb4_unicode_ci'
+php artisan migrate
+php artisan db:seed
+php artisan serve
+
+-- talvez falta algo no .env 
