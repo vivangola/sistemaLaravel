@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriaModel extends Model
+class ParentescoModel extends Model
 {
-    protected $table = 'categorias';
+    protected $table = 'parentescos';
 }

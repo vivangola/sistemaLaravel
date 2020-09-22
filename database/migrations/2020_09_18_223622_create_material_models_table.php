@@ -9,7 +9,7 @@ class CreateMaterialModelsTable extends Migration
 
     public function up()
     {
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('materiais', function (Blueprint $table) {
             $table->id();
             $table->string('material');
             $table->string('modelo')->nullable();
@@ -17,13 +17,13 @@ class CreateMaterialModelsTable extends Migration
             $table->string('descricao')->nullable();
             $table->integer('qtd_minima');
             $table->integer('estoque');
-            $table->foreignId('categoria_id')->constrained('categoria')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('materiais');
     }
 }

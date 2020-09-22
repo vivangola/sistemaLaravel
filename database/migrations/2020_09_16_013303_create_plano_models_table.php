@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePlanoModelsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('planos', function (Blueprint $table) {
@@ -24,11 +19,6 @@ class CreatePlanoModelsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('plano');
