@@ -63,7 +63,8 @@ class PlanoController extends Controller
 
     public function show($id)
     {
-        //
+        $planos = $this->planos->find($id);
+        return json_encode($planos);
     }
 
     public function edit($id)

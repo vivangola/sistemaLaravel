@@ -12,11 +12,12 @@ class CreateDependenteModelsTable extends Migration
         Schema::create('dependentes', function (Blueprint $table) {
             $table->id();
             $table->string('cpf');
-            $table->string('rg')->nullable();
+            //$table->string('rg')->nullable();
             $table->string('nome');
-            $table->string('sexo')->nullable();
-            $table->date('nascimento')->nullable();
+            //$table->string('sexo')->nullable();
+            $table->date('nascimento');
             $table->string('parentesco');
+            $table->foreignId('titular_id')->constrained('titulares')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

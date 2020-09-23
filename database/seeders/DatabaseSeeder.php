@@ -10,9 +10,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(EstadoSeeder::class);
         $this->call(StatusSeeder::class);
-        $this->call(FuncionarioSeeder::class);
-        $this->call(UsuarioSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ParentescoSeeder::class);
+        $this->call(EstadoCivilSeeder::class);
+        $this->call(FuncionarioSeeder::class);
+        $this->call(UsuarioSeeder::class);
     }
 }

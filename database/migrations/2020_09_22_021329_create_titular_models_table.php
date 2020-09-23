@@ -12,20 +12,21 @@ class CreateTitularModelsTable extends Migration
         Schema::create('titulares', function (Blueprint $table) {
             $table->id();
             $table->string('cpf');
-            $table->string('rg')->nullable();
+            $table->string('rg');
             $table->string('nome');
-            $table->string('sexo')->nullable();
+            $table->string('sexo');
             $table->string('telefone');
-            $table->string('email')->nullable();
-            $table->string('civil')->nullable();
-            $table->string('endereco')->nullable();
-            $table->string('numero')->nullable();
-            $table->string('bairro')->nullable();
-            $table->string('cidade')->nullable();
-            $table->string('estado_uf')->nullable();
+            $table->string('email');
+            $table->foreignId('estado_civil_id')->constrained('estado_civil')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('endereco');
+            $table->string('numero');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado_uf');
             $table->foreign('estado_uf')->references('uf')->on('estados')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('cep')->nullable();
-            $table->date('nascimento')->nullable();
+            $table->string('cep');
+            $table->date('nascimento');
+            $table->foreignId('conta_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

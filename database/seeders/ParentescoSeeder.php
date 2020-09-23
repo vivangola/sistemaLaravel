@@ -10,10 +10,7 @@ class ParentescoSeeder extends Seeder
     public function run(ParentescoModel $parentesco)
     {
         $parentesco->create([
-            'parentesco' => 'Filho',
-        ]);
-        $parentesco->create([
-            'parentesco' => 'Filha',
+            'parentesco' => 'Filho(a)',
         ]);
         $parentesco->create([
             'parentesco' => 'Mãe',
@@ -22,10 +19,7 @@ class ParentescoSeeder extends Seeder
             'parentesco' => 'Pai',
         ]);
         $parentesco->create([
-            'parentesco' => 'Sogra',
-        ]);
-        $parentesco->create([
-            'parentesco' => 'Sogro',
+            'parentesco' => 'Sogro(a)',
         ]);
     }
 }
