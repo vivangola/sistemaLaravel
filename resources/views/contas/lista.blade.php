@@ -23,11 +23,13 @@
                           <table class="table table-bordered table-striped" id="tblDados">
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
+                                      <th>Cod.</th>  
                                       <th>Titular</th>
                                       <th>CPF</th>
                                       <th>Telefone</th>
                                       <th>Status</th>
                                       <th>Plano</th>
+                                      <th>Inclusão</th>
                                       <th></th>
                                       <th></th>
                                   </tr>
@@ -35,18 +37,20 @@
                               <tbody>
                                 @foreach($contas as $dados)
                                   <tr>
-                                      <td>{{$dados->nome}}</td>
-                                      <td>{{$dados->cpf}}</td>
-                                      <td>{{$dados->telefone}}</td>
-                                      <td>{{$dados->status}}</td>
-                                      <td>{{$dados->plano}}</td>
+                                      <td align="center">{{ $dados->id }}</td>
+                                      <td>{{$dados->titular->nome}}</td>
+                                      <td align="center">{{$dados->titular->cpf}}</td>
+                                      <td align="center">{{$dados->titular->telefone}}</td>
+                                      <td align="center">{{$dados->status->status}}</td>
+                                      <td align="center">{{$dados->plano->plano}}</td>
+                                      <td align="center">{{$dados->created_at->format('d/m/Y')}}</td>
                                       <td align="center">
                                         <a href="{{url("contas/$dados->id/edit")}}">
                                           <button class="btn btn-primary">Editar</button>
                                         </a>
                                       </td>
                                       <td align="center">
-                                        {!! Form::open(['action' => ['FuncionarioController@destroy', $dados->id], 'method'=> 'POST']) !!}
+                                        {!! Form::open(['action' => ['ContaController@destroy', $dados->id], 'method'=> 'POST']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}

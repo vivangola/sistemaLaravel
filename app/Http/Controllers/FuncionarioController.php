@@ -34,11 +34,12 @@ class FuncionarioController extends Controller
     {
 
         $this->validate($request,[
-            'cpf' => 'required|unique:funcionarios',
+            'cpf' => 'required|string|unique:funcionarios',
             'nome' => 'required|string',
             'sexo' => 'nullable|in:M,F',
             'email' => 'nullable|email:rfc,dns',
-            'nascimento' => 'nullable|date'
+            'nascimento' => 'nullable|date',
+            'estado' => 'nullable|string|exists:estados,uf'
         ]);
 
         try{
@@ -134,8 +135,6 @@ class FuncionarioController extends Controller
             return back()->with('error', 'Erro ao Excluir');
         }        
             
-        return redirect('funcionarios')->with('success', 'Excluído com sucesso!');
-        
-        
+        return redirect('funcionarios')->with('success', 'Excluído com sucesso!');        
     }
 }

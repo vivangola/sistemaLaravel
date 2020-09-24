@@ -16,7 +16,7 @@ class CreateDependenteModelsTable extends Migration
             $table->string('nome');
             //$table->string('sexo')->nullable();
             $table->date('nascimento');
-            $table->string('parentesco');
+            $table->foreignId('parentesco_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('titular_id')->constrained('titulares')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
