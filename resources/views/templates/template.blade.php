@@ -54,12 +54,12 @@
         @include('templates.footer')
 
         <!-- Essential javascripts for application to work-->
-        <script src="{{ url('assets/js/popper.min.js') }}"></script>
-        <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ url('assets/js/main.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/main.js') }}"></script>
         <script type="text/javascript" src="{{ url('assets/js/plugins/bootstrap-notify.min.js') }}"></script>
-        <script src="{{ url('assets/js/plugins/pace.min.js') }}"></script>
-        <script src="{{ url('assets/js/script.js' )}}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/plugins/pace.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/script.js' )}}"></script>
             
         <!-- Google analytics script-->
         <script type="text/javascript">
@@ -72,46 +72,5 @@
                 ga('send', 'pageview');
             }
         </script>
-
-        <!-- Charts -->
-        <script type="text/javascript">
-            var data = {
-                labels: ["Janeiro", "Feveiro", "Março", "Abril", "Maio","Junho", "Julho", "Agosto", "Setembro"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: [18000,16200,16700,17500,17000,18000,21000,24000,23000]
-                    }
-                ]
-            };
-            var ctxb = $("#barChartDemo").get(0).getContext("2d");
-            var barChart = new Chart(ctxb).Bar(data);
-            var data2 = {
-                labels: ["Janeiro", "Feveiro", "Março", "Abril", "Maio","Junho", "Julho", "Agosto", "Setembro"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(0,150,136,0.2)",
-                        strokeColor: "rgba(0,150,136,1)",
-                        pointColor: "rgba(0,150,136,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(0,150,136,1)",
-                        data: [28, 48, 40, 19, 26, 28, 48, 40, 19]
-                    }
-                ]
-            };
-            var ctxb2 = $("#barChartDemo2").get(0).getContext("2d");
-            var barChart2 = new Chart(ctxb2).Bar(data2);
-        </script>
-
-
     </body>
-
 </html>
