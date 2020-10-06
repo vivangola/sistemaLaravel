@@ -34,7 +34,7 @@ class MaterialController extends Controller
         $this->validate($request,[
             'material' => 'required|string',
             'quantidade' => 'required|numeric',
-            'categoria' => 'required|numeric|exists:categoria,id'
+            'categoria' => 'required|numeric|exists:categorias,id'
         ]);
 
         try{
@@ -62,7 +62,8 @@ class MaterialController extends Controller
 
     public function show($id)
     {
-        //
+        $material = $this->materiais->find($id);
+        return json_encode($material);
     }
 
     public function edit($id)
@@ -77,7 +78,7 @@ class MaterialController extends Controller
         $this->validate($request,[
             'material' => 'required|string',
             'quantidade' => 'required|numeric',
-            'categoria' => 'required|numeric|exists:categoria,id'
+            'categoria' => 'required|numeric|exists:categorias,id'
         ]);
 
         try{
