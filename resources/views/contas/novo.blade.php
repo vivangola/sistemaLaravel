@@ -33,7 +33,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label">Plano</label>
-                            <select class="form-control" id="plano" name="plano" required>
+                            <select class="form-control select2" id="plano" name="plano" required>
                                 <option value="">Selecione</option>
                                 @foreach($planos as $dados)
                                 <option value="{{$dados->id}}">{{$dados->plano}}</option>
@@ -225,5 +225,10 @@
         </div>
     </div>
 </div>
+<link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
 <script type="text/javascript" src="{{ url('assets/js/scriptContas.js' )}}"></script>
+<script src="{{ url('assets/js/select2.js') }}"></script>
+<script>
+    $('.select2').select2();
+</script>
 @endsection

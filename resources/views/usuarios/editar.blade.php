@@ -62,7 +62,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Funcionário</label>
-                                    <select class="form-control" name="funcionario">
+                                    <select class="form-control select2" name="funcionario">
                                         <option value="">Selecione</option>
                                         @foreach($funcionarios as $dados)
                                         <option value="{{ $dados->id }}" @if($usuario->funcionario_id == $dados->id) selected @endif >{{ $dados->nome }}</option>
@@ -100,4 +100,9 @@
         </div>
     </div>
 </div>
+<link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
+<script src="{{ url('assets/js/select2.js') }}"></script>
+<script>
+    $('.select2').select2();
+</script>
 @endsection

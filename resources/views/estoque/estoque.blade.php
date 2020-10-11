@@ -5,26 +5,7 @@
 @section('icone','fa fa-archive')
 
 @section('content')
-<style>
-    .select2-container--default .select2-selection--single {
-        height: 37px !important;
-        padding: 0.375rem 0.5rem;
-        font-size: 0.875rem;
-        line-height: 1.33;
-        border-radius: 4px !important;
-    }
 
-    .select2-container--default .select2-selection--single .select2-selection__arrow b {
-        top: 85% !important;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        line-height: 20px !important;
-    }
-    .select2-container--default .select2-selection--single {
-        border: 2px solid #ced4da !important;
-        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-    }
-</style>
 <div class="row">
     <div class="col-md-3">
     </div>
@@ -101,8 +82,8 @@
         </div>
     </div>
 </div>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
+<script src="{{ url('assets/js/select2.js') }}"></script>
 <script>
     $('.select2').select2();
     $("#material").change(function() {
