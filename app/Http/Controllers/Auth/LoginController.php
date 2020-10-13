@@ -59,6 +59,8 @@ class LoginController extends Controller
                 
                 Auth::loginUsingId($usuario->id, $lembrar);
                 Session::put(['user' => [
+                    'id' => $usuario->id,
+                    'usuario' => $usuario->username,
                     'nome' => explode(' ',$usuario->funcionario->nome)[0],
                     'cargo' => $usuario->funcionario->cargo,
                     'tipo' => $usuario->tipo

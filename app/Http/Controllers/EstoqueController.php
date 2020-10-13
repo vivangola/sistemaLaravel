@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\MaterialModel;
 use App\Models\MovimentoEstoqueModel;
+use Session;
 
 class EstoqueController extends Controller
 {
@@ -65,12 +66,14 @@ class EstoqueController extends Controller
             DB::rollback();
             return json_encode([
                 'success'=> false,
-                'msg' => 'Erro ao editar estoque!'
+                'msg' => 'Erro ao atualizar estoque!'
             ]);
         }   
         
         try{
             $this->movimento->create([
+                'quantidade' => $request->quantidade,
+                'usuario_id' => Session::get('user')['id'],
                 'operacao' => ($request->operacao == 'E' ? 'Entrada' : 'Saida'),
                 'tipo' => 'Movimento Estoque',
                 'observacao' => $request->observacao,

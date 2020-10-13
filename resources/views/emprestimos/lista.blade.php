@@ -1,7 +1,7 @@
 @extends('templates.template')
-@section('title','Contas')
+@section('title','Empréstimos')
 
-@section('titulo','CONTAS')
+@section('titulo','EMPRÉSTIMOS')
 @section('icone','fa fa-user')
 
 @section('content')
@@ -12,7 +12,7 @@
               <div class="tile-body">
                   <div class="row mr-4 mt-2">
                       <div class="text-right col-md-12">
-                          <a href="/contas/create">
+                          <a href="/emprestimos/create">
                               <button class="btn btn-primary" style="width:100px">Novo &nbsp;<i class="fa fa-plus"></i></button>
                           </a>
                       </div>
@@ -23,37 +23,26 @@
                           <table class="table table-bordered table-striped" id="tblDados">
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
-                                      <th>Cod.</th>  
+                                      <th>Conta</th>
                                       <th>Titular</th>
-                                      <th>CPF</th>
-                                      <th>Telefone</th>
-                                      <th>Status</th>
-                                      <th>Plano</th>
-                                      <th>Inclusão</th>
-                                      <th></th>
+                                      <th>Material</th>
+                                      <th>Quantidade</th>
+                                      <th>Data</th>
                                       <th></th>
                                   </tr>
                               </thead>
                               <tbody>
-                                @foreach($contas as $dados)
+                                @foreach($emprestimos as $dados)
                                   <tr>
-                                      <td align="center">{{ substr('0000'.$dados->id, -4) }}</td>
-                                      <td>{{$dados->titular->nome}}</td>
-                                      <td align="center">{{$dados->titular->cpf}}</td>
-                                      <td align="center">{{$dados->titular->telefone}}</td>
-                                      <td align="center">{{$dados->status->status}}</td>
-                                      <td align="center">{{$dados->plano->plano}}</td>
-                                      <td align="center">{{$dados->created_at->format('d/m/Y')}}</td>
+                                      <td align="center">{{ substr('0000'.$dados->conta->id, -4) }}</td>
+                                      <td>{{ $dados->conta->titular->nome }}</td>
+                                      <td>{{ $dados->material->material }}</td>
+                                      <td align="center">{{ $dados->quantidade }}</td>
+                                      <td align="center">{{ $dados->created_at->format('d/m/Y') }}</td>
                                       <td align="center">
-                                        <a href="{{url("contas/$dados->id/edit")}}">
-                                          <button class="btn btn-primary">Editar</button>
+                                        <a href="{{url("emprestimos/$dados->id/edit")}}">
+                                          <button class="btn btn-danger">Devolução</button>
                                         </a>
-                                      </td>
-                                      <td align="center">
-                                        {!! Form::open(['action' => ['ContaController@destroy', $dados->id], 'method'=> 'POST']) !!}
-                                            {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
-                                        {!! Form::close() !!}
                                       </td>
                                   </tr>
                                 @endforeach

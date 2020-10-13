@@ -11,10 +11,13 @@ class CreateMovimentoEstoqueModelsTable extends Migration
     {
         Schema::create('movimento_estoque', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('quantidade');
             $table->string('operacao');
             $table->string('tipo');
             $table->string('observacao')->nullable();
+            $table->foreignId('usuario_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('material_id')->constrained('materiais')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('emprestimo_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

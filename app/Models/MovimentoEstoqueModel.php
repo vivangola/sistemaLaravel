@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MovimentoEstoqueModel extends Model
 {
     protected $table = 'movimento_estoque';
-    protected $fillable = ['operacao','tipo', 'observacao', 'material_id'];
+    protected $fillable = ['quantidade','usuario_id','operacao','tipo','observacao','material_id','emprestimo_id'];
 }
