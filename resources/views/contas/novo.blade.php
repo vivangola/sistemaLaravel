@@ -27,44 +27,44 @@
                     </div>
                 </div>
                 <br>
-                <h4>Planos</h4>
-                <hr>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label">Plano</label>
-                            <select class="form-control select2" id="plano" name="plano" required>
-                                <option value="">Selecione</option>
-                                @foreach($planos as $dados)
-                                <option value="{{$dados->id}}">{{$dados->plano}}</option>
-                                @endforeach
-                            </select>
-                            <input type="hidden" id="previous">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label">Mensalidade</label>
-                            <input class="form-control" type="text" id="mensalidade" name="mensalidade" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label">Carência</label>
-                            <input class="form-control" type="text" id="carencia" name="carencia" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label">Qtd. Dependentes</label>
-                            <input class="form-control" type="text" id="qtd" name="qtd" readonly>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <h4>Titular</h4>
-                <hr>
                 <div class="tile-body">
+                    <h4>Planos</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Plano</label>
+                                <select class="form-control select2" id="plano" name="plano" required>
+                                    <option value="">Selecione</option>
+                                    @foreach($planos as $dados)
+                                    <option value="{{$dados->id}}">{{$dados->plano}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" id="previous">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Mensalidade</label>
+                                <input class="form-control" type="text" id="mensalidade" name="mensalidade" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Carência</label>
+                                <input class="form-control" type="text" id="carencia" name="carencia" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Qtd. Dependentes</label>
+                                <input class="form-control" type="text" id="qtd" name="qtd" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <h4>Titular</h4>
+                    <hr>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -178,7 +178,6 @@
                     <br>
                     <h4>Dependentes</h4>
                     <hr>
-                    
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <button type="button" id="btnAdd" class="btn btn-primary">Adicionar&nbsp;&nbsp;<i class="fa fa-plus"></i></button>
@@ -214,8 +213,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <a href="{{ url('contas') }}">
-                                <button type="button" class="btn btn-primary" style="width:100px"><i
-                                        class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
+                                <button type="button" class="btn btn-primary" style="width:100px"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                             </a>&nbsp;
                             <input type="submit" class="btn btn-primary" style="width:100px" value="Enviar">
                         </div>
