@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('/contas', 'ContaController');
     Route::resource('/estoque', 'EstoqueController');
     Route::resource('/emprestimos', 'EmprestimoController');
+    Route::resource('/mensalidades', 'MensalidadeController');
 
 });

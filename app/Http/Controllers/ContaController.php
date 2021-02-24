@@ -120,37 +120,39 @@ class ContaController extends Controller
         }    
 
         //dependentes
-        if(count($request->dcpf) > $this->contas->find($contaID)->plano->dependentes){
-            DB::rollback();
-            return json_encode([
-                'success'=> false,
-                'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
-            ]);
-        }
-
-        $result=$this->validate($request,[
-            'dnome.*' => 'required|string',
-            'dcpf.*' => 'required|string|unique:dependentes,cpf',
-            'dnascimento.*' => 'required|date',
-            'parentesco.*' => 'required|numeric|exists:parentescos,id'
-        ]);
-
-        foreach($request->dcpf as $key => $dados){
-            try{
-                $this->dependentes->create([
-                    'cpf' => $request->dcpf[$key],
-                    'nome' => $request->dnome[$key],
-                    'nascimento' => $request->dnascimento[$key],
-                    'parentesco_id' => $request->parentesco[$key],
-                    'titular_id' => $titularID
-                ]);
-            }catch(QueryException $ex){ 
+        if($request->dcpf){
+            if(count($request->dcpf) > $this->contas->find($contaID)->plano->dependentes){
                 DB::rollback();
                 return json_encode([
                     'success'=> false,
-                    'msg' => 'Erro ao Salvar o Dependente '.$request->nome.'!'
+                    'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
                 ]);
-            }  
+            }
+
+            $result=$this->validate($request,[
+                'dnome.*' => 'required|string',
+                'dcpf.*' => 'required|string|unique:dependentes,cpf',
+                'dnascimento.*' => 'required|date',
+                'parentesco.*' => 'required|numeric|exists:parentescos,id'
+            ]);
+
+            foreach($request->dcpf as $key => $dados){
+                try{
+                    $this->dependentes->create([
+                        'cpf' => $request->dcpf[$key],
+                        'nome' => $request->dnome[$key],
+                        'nascimento' => $request->dnascimento[$key],
+                        'parentesco_id' => $request->parentesco[$key],
+                        'titular_id' => $titularID
+                    ]);
+                }catch(QueryException $ex){ 
+                    DB::rollback();
+                    return json_encode([
+                        'success'=> false,
+                        'msg' => 'Erro ao Salvar o Dependente '.$request->nome.'!'
+                    ]);
+                }  
+            }
         }
 
         DB::commit();
