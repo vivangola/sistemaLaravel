@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MensalidadeModel;
+use App\Models\FormasPagamentoModel;
 
 class MensalidadeController extends Controller
 {
 
     protected $mensalidades;
+    protected $formasPagamento;
 
     public function __construct(){
         $this->mensalidades = new MensalidadeModel;
+        $this->formasPagamento = new FormasPagamentoModel;
     }
     
     public function index()
@@ -37,7 +40,10 @@ class MensalidadeController extends Controller
 
     public function edit($id)
     {
-        //
+        $mensalidade = $this->mensalidades->find($id);
+        $formasPagamento = $this->formasPagamento->all();
+        $data = date('Y-m-d');
+        return view('mensalidades.editar',compact('mensalidade', 'data', 'formasPagamento'));
     }
     
     public function update(Request $request, $id)
