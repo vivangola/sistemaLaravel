@@ -1,0 +1,11 @@
+PENDENCIAS 
+
+Modulos
+- Modulo Registrar Óbitos
+- Gráficos Home
+
+SubModulos
+- Gerar Mensalidade Mensal
+- Gerar Mensalidade ao Finalizar Contrato
+- Botão Contrato 
+- Trocar Titular ou Inativar Conta ao registrar obito do titular

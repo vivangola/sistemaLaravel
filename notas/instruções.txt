@@ -16,5 +16,3 @@ criar banco codificacao 'utf8mb4_unicode_ci'
 php artisan migrate
 php artisan db:seed
 php artisan serve
-
--- talvez falta algo no .env 
