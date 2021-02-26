@@ -72,6 +72,7 @@
                             <div class="form-group">
                                 <label class="control-label">Forma de Pagamento</label>
                                 <select class="form-control" name="forma_pagamento" required>
+                                    <option value="0">Selecione</option>
                                     @foreach($formasPagamento as $dados)
                                         <option value="{{ $dados->id }}" >{{$dados->descricao}}</option>
                                     @endforeach
@@ -89,7 +90,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <a href="{{ url('contas') }}">
+                        <a href="{{ url('mensalidades') }}">
                             <button type="button" class="btn btn-primary" style="width:100px"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                         </a>&nbsp;
                         <input type="submit" class="btn btn-primary" style="width:100px" value="Enviar">

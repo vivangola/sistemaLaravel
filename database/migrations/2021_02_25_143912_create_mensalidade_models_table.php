@@ -15,7 +15,7 @@ class CreateMensalidadeModelsTable extends Migration
             $table->foreignId('plano_id')->constrained()->onDelete('cascade')->onUpdate('cascade');            
             $table->double('valor',8,2);
             $table->string('periodo');
-            $table->date('data_pagamento');
+            $table->date('data_pagamento')->nullable();
             $table->foreignId('formas_pagamento_id')->constrained('formas_pagamento')->onDelete('cascade')->onUpdate('cascade');       
             $table->timestamps();
         });
