@@ -26,4 +26,28 @@ $("form.crud").submit(function(evt){
 		}
 	});
 });
-	
+
+$("[name='cep']").keyup(function(){
+	if( (($(this).val()).replace('-','')).length == 8){
+		$.ajax({
+			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
+			type: 'GET',
+			dataType: 'json',
+			success: function(response){
+				if(response.erro){
+					swal("Atenção!", "Cep inválido", "warning");
+					$("[name='cep']").val("");
+				}else{
+					$("[name='endereco']").val(response.logradouro);
+					$("[name='bairro']").val(response.bairro);
+					$("[name='cep']").val(response.cep);
+					$("[name='cidade']").val(response.localidade);
+					$("[name='estado'").val(response.uf);
+				}
+			},
+			error: function(response){
+				swal("Atenção!", "Erro ao buscar cep", "warning");
+			}
+		});
+	}
+});
