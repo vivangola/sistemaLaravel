@@ -56,18 +56,18 @@
                 </div>
             </form>
             <form class="forget-form" method="post" action="resetarSenha">
-                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Esqueci minha senha</h3>
                 <div class="form-group">
                     <label class="control-label">EMAIL</label>
                     <input class="form-control" type="text" placeholder="Email">
                 </div>
                 <div class="form-group btn-container">
                     <button class="btn btn-primary btn-block" type="submit"><i
-                            class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+                            class="fa fa-unlock fa-lg fa-fw"></i>Enviar</button>
                 </div>
                 <div class="form-group mt-3">
                     <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i>
-                            Back to Login</a></p>
+                            Voltar ao Login</a></p>
                 </div>
             </form>
         </div>
