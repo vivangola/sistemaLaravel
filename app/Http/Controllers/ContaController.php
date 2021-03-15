@@ -155,6 +155,16 @@ class ContaController extends Controller
             }
         }
 
+        try{
+            DB::statement('call geraMensalidade_sp('.$contaID.')');
+        }catch(QueryException $ex){ 
+            DB::rollback();
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao Gerar Mensalidade!'
+            ]);
+        }  
+
         DB::commit();
        
         return json_encode([
