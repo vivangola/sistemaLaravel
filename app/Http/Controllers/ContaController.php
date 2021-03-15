@@ -156,7 +156,8 @@ class ContaController extends Controller
         }
 
         try{
-            DB::statement('call geraMensalidade_sp('.$contaID.')');
+            DB::statement('call gerarMensalidade_sp('.$contaID.')');
+            DB::statement('call atualizaDebito_sp('.$contaID.')');
         }catch(QueryException $ex){ 
             DB::rollback();
                 return json_encode([
@@ -259,46 +260,48 @@ class ContaController extends Controller
         }    
 
         //dependentes
-        if(count($request->dcpf) > $this->contas->find($id)->plano->dependentes){
-            DB::rollback();
-            return json_encode([
-                'success'=> false,
-                'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
-            ]);
-        }
-
-        try {             
-            $this->dependentes->where('titular_id', $titularID)->delete();
-        }catch(QueryException $ex){ 
-            DB::rollback();
-            return back()->with('error', 'Erro ao configurar dependentes');
-        }        
-        
-        $result=$this->validate($request,[
-            'dnome.*' => 'required|string',
-            'dcpf.*' => 'required|string|unique:dependentes,cpf',
-            'dnascimento.*' => 'required|date',
-            'parentesco.*' => 'required|numeric|exists:parentescos,id'
-        ]);
-
-        foreach($request->dcpf as $key => $dados){
-            try{
-                $this->dependentes->create([
-                    'cpf' => $request->dcpf[$key],
-                    'nome' => $request->dnome[$key],
-                    'nascimento' => $request->dnascimento[$key],
-                    'parentesco_id' => $request->parentesco[$key],
-                    'titular_id' => $titularID
-                ]);
-            }catch(QueryException $ex){ 
+        if($request->dcpf){
+            if(count($request->dcpf) > $this->contas->find($id)->plano->dependentes){
                 DB::rollback();
                 return json_encode([
                     'success'=> false,
-                    'msg' => 'Erro ao Salvar o Dependente '.$request->nome.'!'
+                    'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
                 ]);
-            }  
-        }
+            }
 
+            try {             
+                $this->dependentes->where('titular_id', $titularID)->delete();
+            }catch(QueryException $ex){ 
+                DB::rollback();
+                return back()->with('error', 'Erro ao configurar dependentes');
+            }        
+            
+            $result=$this->validate($request,[
+                'dnome.*' => 'required|string',
+                'dcpf.*' => 'required|string|unique:dependentes,cpf',
+                'dnascimento.*' => 'required|date',
+                'parentesco.*' => 'required|numeric|exists:parentescos,id'
+            ]);
+
+            foreach($request->dcpf as $key => $dados){
+                try{
+                    $this->dependentes->create([
+                        'cpf' => $request->dcpf[$key],
+                        'nome' => $request->dnome[$key],
+                        'nascimento' => $request->dnascimento[$key],
+                        'parentesco_id' => $request->parentesco[$key],
+                        'titular_id' => $titularID
+                    ]);
+                }catch(QueryException $ex){ 
+                    DB::rollback();
+                    return json_encode([
+                        'success'=> false,
+                        'msg' => 'Erro ao Salvar o Dependente '.$request->nome.'!'
+                    ]);
+                }  
+            }
+        }
+        
         DB::commit();
        
         return json_encode([

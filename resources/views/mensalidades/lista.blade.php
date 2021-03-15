@@ -23,8 +23,8 @@
                           <table class="table table-bordered table-striped" id="tblDados">
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
+                                      <th>Cod.</th>
                                       <th>Titular</th>
-                                      <th>CPF</th>
                                       <th>Telefone</th>
                                       <th>Status</th>
                                       <th>Plano</th>
@@ -34,21 +34,23 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                @foreach($mensalidades as $dados)
-                                  <tr>
-                                      <td>{{$dados->conta->titular->nome}}</td>
-                                      <td align="center">{{$dados->conta->titular->cpf}}</td>
-                                      <td align="center">{{$dados->conta->titular->telefone}}</td>
-                                      <td align="center">{{$dados->conta->status->status}}</td>
-                                      <td align="center">{{$dados->conta->plano->plano}}</td>
-                                      <td align="center">{{$dados->conta->plano->mensalidade}}</td>
-                                      <td align="center">{{$dados->periodo}}</td>
-                                      <td align="center">
-                                        <a href="{{url("mensalidades/$dados->id/edit")}}">
-                                          <button class="btn btn-danger">Pagar</button>
-                                        </a>
-                                      </td>
-                                  </tr>
+                                @foreach($contas as $dados)
+                                    @foreach($dados->mensalidadesDebito()->get() as $mensalidade)
+                                        <tr>
+                                            <td align="center">{{ substr('0000'.$dados->id, -4) }}</td>
+                                            <td>{{$dados->titular->nome}}</td>
+                                            <td align="center">{{$dados->titular->telefone}}</td>
+                                            <td align="center">{{$dados->status->status}}</td>
+                                            <td align="center">{{$dados->plano->plano}}</td>
+                                            <td align="center">{{$dados->plano->mensalidade}}</td>
+                                            <td align="center">{{$mensalidade->periodo}}</td>
+                                            <td align="center">
+                                                <a href="{{url("mensalidades/$mensalidade->id/edit")}}">
+                                                <button class="btn btn-danger">Pagar</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                 @endforeach
                               </tbody>
                           </table>

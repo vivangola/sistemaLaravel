@@ -5,22 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MensalidadeModel;
 use App\Models\FormasPagamentoModel;
+use App\Models\ContaModel;
+use DB;
 
 class MensalidadeController extends Controller
 {
 
     protected $mensalidades;
     protected $formasPagamento;
+    protected $contas;
 
     public function __construct(){
         $this->mensalidades = new MensalidadeModel;
+        $this->contas = new ContaModel;
         $this->formasPagamento = new FormasPagamentoModel;
     }
     
     public function index()
     {
-        $mensalidades = $this->mensalidades->all()->where('data_pagamento',null);
-        return view('mensalidades.lista', compact('mensalidades'));
+        $contas = $this->contas->contasAtivas()->sortBy('cod');
+        return view('mensalidades.lista', compact('contas'));
     }
     
     public function create()
@@ -40,10 +44,11 @@ class MensalidadeController extends Controller
 
     public function edit($id)
     {
-        $mensalidade = $this->mensalidades->find($id)->where('data_pagamento',null)->first();
+        
+        $mensalidade = $this->mensalidades->where(['id' => $id, 'data_pagamento' => null])->first();
         $formasPagamento = $this->formasPagamento->all();
         $data = date('Y-m-d');
-
+        
         if(!$mensalidade){
             return redirect('mensalidades');
         }else{
@@ -58,6 +63,8 @@ class MensalidadeController extends Controller
             'data_pagamento' => 'required|date'
         ]);
 
+        DB::beginTransaction();
+
         try{
             $this->mensalidades->find($id)->update([
                 'formas_pagamento_id' => $request->forma_pagamento,
@@ -69,6 +76,19 @@ class MensalidadeController extends Controller
                 'msg' => 'Erro ao Registrar Pagamento'
             ]);
         }    
+
+        try{
+            $contaID = $this->mensalidades->find($id)->conta_id;
+            DB::statement('call atualizaDebito_sp('.$contaID.')');
+        }catch(QueryException $ex){ 
+            DB::rollback();
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao atualizar status!'
+            ]);
+        }  
+        
+        DB::commit();
         
         return json_encode([
             'success'=> true,
