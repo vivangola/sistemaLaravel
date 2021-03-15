@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FuncionarioSeeder::class);
         $this->call(UsuarioSeeder::class);
         $this->call(FormasPagamentoSeeder::class);
+        $this->call(MesSeeder::class);
     }
 }
