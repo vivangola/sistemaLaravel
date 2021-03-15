@@ -84,21 +84,30 @@ class UsuarioController extends Controller
     {
         $this->validate($request,[
             'login' => 'required|unique:usuarios,username,'.$id,
-            'senha' => 'required',
-            'confirmacao' => 'required|same:senha',
+            'senha' => session('user.tipo') == 0 ? 'required' : '',
+            'confirmacao' => session('user.tipo') == 0 ? 'required|same:senha' : '',
             'status' => 'required|numeric|exists:tipo_status,id',
-            'tipo' => 'required|in:0,1',
+            'tipo' => session('user.tipo') == 1 ? 'required|in:0,1' : '',
             'funcionario' => 'required|exists:funcionarios,id|unique:usuarios,funcionario_id,'.$id
         ]);
 
         try{
-            $this->usuarios->find($id)->update([
-                'username' => $request->login,
-                'password' => bcrypt($request->senha),
-                'tipo' => $request->tipo,
-                'tipo_status_id' => $request->status,
-                'funcionario_id' => $request->funcionario
-            ]);
+            if(session('user.id') != $id){
+                $this->usuarios->find($id)->update([
+                    'username' => $request->login,
+                    'tipo' => $request->tipo,
+                    'tipo_status_id' => $request->status,
+                    'funcionario_id' => $request->funcionario
+                ]);
+            }else{
+                $this->usuarios->find($id)->update([
+                    'username' => $request->login,
+                    'tipo' => isset($request->tipo) ? $request->tipo : 0,
+                    'password' => bcrypt($request->senha),
+                    'tipo_status_id' => $request->status,
+                    'funcionario_id' => $request->funcionario
+                ]);
+            }
         }catch(QueryException $ex){ 
             return json_encode([
                 'success'=> false,

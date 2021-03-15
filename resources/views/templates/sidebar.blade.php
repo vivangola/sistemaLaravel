@@ -15,7 +15,11 @@
               <li><a class="treeview-item" href="/funcionarios"><i class="icon fa fa-circle-o"></i>Funcionários</a></li>
               <li><a class="treeview-item" href="/materiais"><i class="icon fa fa-circle-o"></i>Materiais</a></li>
               <li><a class="treeview-item" href="/planos"><i class="icon fa fa-circle-o"></i>Planos</a></li>
-              <li><a class="treeview-item" href="/usuarios"><i class="icon fa fa-circle-o"></i>Usuários</a></li>
+              @if (session('user.tipo') == 1)
+                <li><a class="treeview-item" href="/usuarios"><i class="icon fa fa-circle-o"></i>Usuários</a></li>
+              @else
+                <li><a class="treeview-item" href="/usuarios/{{ session('user.id') }}/edit"><i class="icon fa fa-circle-o"></i>Usuários</a></li>
+              @endif 
             </ul>
           </li>
           <li><a class="app-menu__item" href="/contas"><i class="app-menu__icon fa fa-address-card-o"></i><span class="app-menu__label">Gerenciar Contas</span></a></li>

@@ -52,7 +52,7 @@ class LoginController extends Controller
         ]);
         
         $lembrar = !empty($request->lembrar);
-        $usuario = User::where('username', $request->login)->first();
+        $usuario = User::where(['username' => $request->login, 'tipo_status_id' => 1])->first();
 
         if(!empty($usuario)){
             if(Hash::check($request->senha, $usuario->password)){

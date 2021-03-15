@@ -30,22 +30,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Senha</label>
-                                    <input class="pull-center form-control" type="password" name="senha" placeholder="" required>
+                        @if(session('user.id') == $usuario->id)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Senha</label>
+                                        <input class="pull-center form-control" type="password" name="senha" placeholder="" required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Confirmação de Senha</label>
-                                    <input class="pull-center form-control" type="password" name="confirmacao" placeholder="" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Confirmação de Senha</label>
+                                        <input class="pull-center form-control" type="password" name="confirmacao" placeholder="" >
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -71,23 +73,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-md-12">
-                                <div class="form-check text-center">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="1" @if($usuario->tipo == '1') checked @endif>Administrador
-                                    </label>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="tipo" value="0" @if($usuario->tipo == '0') checked @endif>Usuário
-                                    </label>
+                        @if (session('user.tipo') == 1)
+                            <div class="row mt-1">
+                                <div class="col-md-12">
+                                    <div class="form-check text-center">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="1" @if($usuario->tipo == '1') checked @endif>Administrador
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="0" @if($usuario->tipo == '0') checked @endif>Usuário
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <hr>
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <a href="{{ url('usuarios') }}">
+                                @if (session('user.tipo') == 1)
+                                    <a href="{{ url('usuarios') }}">
+                                @else
+                                    <a href="/">
+                                @endif 
                                     <button type="button" class="btn btn-primary" style="width:100px"><i
                                             class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                                 </a>&nbsp;
