@@ -232,6 +232,9 @@
                             <a href="{{ url('contas') }}">
                                 <button type="button" class="btn btn-primary" style="width:100px"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                             </a>&nbsp;
+                            <a href="{{ '/documents/Contrato.docx' }}">
+                                <button type="button" class="btn btn-primary" style="width:120px"><i class="fa fa-file"></i>&nbsp;Contrato</button>
+                            </a>&nbsp;
                             <input type="submit" class="btn btn-primary" style="width:100px" value="Enviar">
                         </div>
                     </div>

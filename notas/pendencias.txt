@@ -3,7 +3,7 @@ PENDENCIAS
 Modulos
 - Modulo Registrar Óbitos
 - Gráficos Home
-- Versao do usuario (modelo cednet)
+- Versao de pagamento do usuario (modelo cednet)
 
 SubModulos
 - Botão Contrato 
