@@ -40,7 +40,18 @@
                                             <td align="center">{{ substr('0000'.$dados->id, -4) }}</td>
                                             <td>{{$dados->titular->nome}}</td>
                                             <td align="center">{{$dados->titular->telefone}}</td>
-                                            <td align="center">{{$dados->status->status}}</td>
+                                            <td align="center">
+                                                @if($dados->status->id == 1)
+                                                    @php $btn = 'success'; @endphp
+                                                @elseif($dados->status->id == 2)
+                                                    @php $btn = 'warning'; @endphp
+                                                @else
+                                                    @php $btn = 'danger'; @endphp
+                                                @endif
+                                                <button type="button" class='btn btn-{{$btn}} btn-status'>
+                                                        {{$dados->status->status}}
+                                                </button>
+                                            </td>
                                             <td align="center">{{$dados->plano->plano}}</td>
                                             <td align="center">{{$dados->plano->mensalidade}}</td>
                                             <td align="center">{{$mensalidade->periodo}}</td>

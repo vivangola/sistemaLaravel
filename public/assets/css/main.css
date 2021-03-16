@@ -16757,3 +16757,16 @@ be a descendant of the grid when it is being dragged.
 .user .user-settings label {
   color: #666;
 }
+
+.btn-status{
+  width:100px !important;
+}
+
+.btn-status:hover{
+    text-decoration: none;
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    background-color: none !important;
+}

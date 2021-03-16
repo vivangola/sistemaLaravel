@@ -75,7 +75,7 @@
                                 <select class="form-control select2" id="conta" name="conta" required>
                                     <option value="">Selecione</option>
                                     @foreach($titulares as $dados)
-                                    <option value="{{ $dados->conta_id }}">{{ $dados->nome }}</option>
+                                        <option value="{{ $dados->id }}">{{ $dados->titular->nome }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -35,7 +35,7 @@ class EmprestimoController extends Controller
     
     public function create()
     {
-        $titulares = $this->titulares->all()->sortBy('nome');
+        $titulares = $this->conta->contasAtivas()->sortBy('nome');
         $materiais = $this->materiais->all()->where('estoque','>', 0)->sortBy('material');
         return view('emprestimos.novo', compact('titulares','materiais'));
     }
