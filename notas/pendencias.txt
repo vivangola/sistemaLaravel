@@ -1,7 +1,6 @@
 PENDENCIAS 
 
 Modulos
-- Modulo Registrar Óbitos
 - Gráficos Home
 - Versao de pagamento do usuario (modelo cednet)
 
