@@ -14,4 +14,12 @@ class ObitoModel extends Model
         return $this->hasOne('App\Models\ContaModel', 'id', 'conta_id');
     }
 
+    public function falecido(){
+        $falecido = $this->conta->titular->where('cpf',$this->cpf_falecido)->first();
+        if(!$falecido){
+            $falecido = $this->conta->titular->dependentes->where('cpf',$this->cpf_falecido)->first();
+        }
+        return $falecido;
+    }
+
 }

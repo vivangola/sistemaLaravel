@@ -11,6 +11,7 @@ use App\Models\ParentescoModel;
 use App\Models\PlanoModel;
 use App\Models\TitularModel;
 use App\Models\DependenteModel;
+use App\Models\ObitoModel;
 use DB;
 
 class ContaController extends Controller
@@ -177,7 +178,23 @@ class ContaController extends Controller
 
     public function show($id)
     {
-        //
+        $titular = $this->contas->find($id)->titular;
+        $dependentes = $this->contas->find($id)->titular->dependentes->all();
+        $obitos = new ObitoModel;
+        
+        $pessoas = [];
+        if(!$obitos->where('cpf_falecido',$titular->cpf)->exists()){
+            array_push($pessoas,['cpf' => $titular->cpf, 'nome' => $titular->nome]);
+        }
+
+        if($dependentes){
+            foreach($dependentes as $dados){
+                if(!$obitos->where('cpf_falecido',$dados->cpf)->exists()){
+                    array_push($pessoas, ['cpf' => $dados->cpf, 'nome' => $dados->nome]);
+                }
+            }
+        }
+        return json_encode($pessoas);
     }
 
     public function edit($id)

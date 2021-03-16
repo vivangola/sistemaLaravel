@@ -6,5 +6,4 @@ Modulos
 - Versao de pagamento do usuario (modelo cednet)
 
 SubModulos
-- Botão Contrato 
 - Trocar Titular ou Inativar Conta ao registrar obito do titular

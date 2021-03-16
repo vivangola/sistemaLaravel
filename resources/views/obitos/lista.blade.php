@@ -36,8 +36,8 @@
                                   <tr>
                                       <td align="center">{{ substr('0000'.$dados->conta->id, -4) }}</td>
                                       <td>{{ $dados->conta->titular->nome }}</td>
-                                      <td>{{ $dados->conta->plano->plano }}</td>
-                                      <td align="center"></td>
+                                      <td align="center">{{ $dados->conta->plano->plano }}</td>
+                                      <td align="center">{{ $dados->falecido()->nome }}</td>
                                       <td align="center">{{ $dados->created_at->format('d/m/Y') }}</td>
                                       <td align="center">
                                         <a href="{{url("obitos/$dados->id/edit")}}">
