@@ -132,9 +132,16 @@ class FuncionarioController extends Controller
         try {             
             $this->funcionario->destroy($id);
         }catch(QueryException $ex){ 
+            return json_encode([
+                'success'=> false,
+                'msg' => 'Erro ao Excluir!'
+            ]);
             return back()->with('error', 'Erro ao Excluir');
         }        
-            
-        return redirect('funcionarios')->with('success', 'Excluído com sucesso!');        
+          
+        return json_encode([
+            'success'=> true,
+            'msg' => 'Excluído com sucesso!'
+        ]);
     }
 }

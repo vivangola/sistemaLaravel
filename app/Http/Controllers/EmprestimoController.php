@@ -118,6 +118,9 @@ class EmprestimoController extends Controller
     public function edit($id)
     {
         $emprestimo = $this->emprestimos->find($id);
+        if($emprestimo->quantidade == 0){
+            return redirect('emprestimos');
+        }
         $material = $this->materiais->find($emprestimo->material_id);
         $titular = $this->conta->find($emprestimo->conta_id)->titular;
         return view('emprestimos.editar', compact('emprestimo','material','titular'));

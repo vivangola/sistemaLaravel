@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
-            <form name="frmNovo" class='crud' method="POST" action="{{ url("contas/$conta->id") }}">
+            <form name="frmNovo" class='alter' method="POST" action="{{ url("contas/$conta->id") }}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -245,7 +245,7 @@
 </div>
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
 <script type="text/javascript" src="{{ url('assets/js/scriptContas.js' )}}"></script>
-<script src="{{ url('assets/js/select2.js') }}"></script>
+<script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
 <script>
     $('.select2').select2();
 </script>

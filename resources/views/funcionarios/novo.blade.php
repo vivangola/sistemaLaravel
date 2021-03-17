@@ -16,7 +16,7 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='crud' method="POST" action="{{ url('funcionarios') }}">
+                <form name="frmNovo" class='insert' method="POST" action="{{ url('funcionarios') }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

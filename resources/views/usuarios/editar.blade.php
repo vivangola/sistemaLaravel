@@ -19,7 +19,7 @@
             <hr>
             <div class="tile-body">
                 <div class="col-md-12">
-                    <form name="frmNovo" class='crud' method="POST" action="{{ url("usuarios/$usuario->id") }}">
+                    <form name="frmNovo" class='alter' method="POST" action="{{ url("usuarios/$usuario->id") }}">
                         @method('PUT')
                         @csrf
                         <div class="row">
@@ -109,7 +109,7 @@
     </div>
 </div>
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
-<script src="{{ url('assets/js/select2.js') }}"></script>
+<script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
 <script>
     $('.select2').select2();
 </script>

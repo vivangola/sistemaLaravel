@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
-            <form name="frmNovo" class='crud' method="POST" action="{{ url("mensalidades/$mensalidade->id") }}">
+            <form name="frmNovo" class='alter' method="POST" action="{{ url("mensalidades/$mensalidade->id") }}">
                 @method('PUT')
                 @csrf
                 <div class="row">

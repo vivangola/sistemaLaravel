@@ -101,7 +101,7 @@ class PlanoController extends Controller
         
         return json_encode([
             'success'=> true,
-            'msg' => ''
+            'msg' => 'Alterado com sucesso!'
         ]);
     }
 
@@ -110,9 +110,16 @@ class PlanoController extends Controller
         try {             
             $this->planos->destroy($id);
         }catch(QueryException $ex){ 
+            return json_encode([
+                'success'=> false,
+                'msg' => 'Erro ao Excluir!'
+            ]);
             return back()->with('error', 'Erro ao Excluir');
         }        
-            
-        return redirect('planos')->with('success', 'Excluído com sucesso!');
+          
+        return json_encode([
+            'success'=> true,
+            'msg' => 'Excluído com sucesso!'
+        ]);
     }
 }

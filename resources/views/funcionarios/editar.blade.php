@@ -16,7 +16,7 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='crud' method="POST" action="{{ url("funcionarios/$funcionario->id") }}">
+                <form name="frmNovo" class='alter' method="POST" action="{{ url("funcionarios/$funcionario->id") }}">
                     @method('PUT')
                     @csrf
                     <div class="row">
@@ -139,5 +139,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="{{ url('assets/js/plugins/sweetalert.min.js') }}"></script>
 @endsection

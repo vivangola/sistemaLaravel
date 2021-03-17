@@ -19,7 +19,7 @@
             <hr>
             <div class="tile-body">
                 <div class="col-md-12">
-                    <form name="frmNovo" class='crud' method="POST" action="{{ url('planos') }}">
+                    <form name="frmNovo" class='insert' method="POST" action="{{ url('planos') }}">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">

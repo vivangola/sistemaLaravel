@@ -61,7 +61,7 @@
                                         </a>
                                       </td>
                                       <td align="center">
-                                        {!! Form::open(['action' => ['ContaController@destroy', $dados->id], 'method'=> 'POST']) !!}
+                                        {!! Form::open(['action' => ['ContaController@destroy', $dados->id], 'method'=> 'POST', 'class' => 'alter']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
@@ -85,11 +85,5 @@
                 "url": "{{ url('assets/js/plugins/dataTablePTBR.json') }}"
             }
         });
-        
-        @if (session('success'))
-            swal("Sucesso!", "", "success");
-        @elseif (session('error'))
-            swal("Atenção!", "{{ session('error') }}", "error");
-        @endif
   </script>
 @endsection

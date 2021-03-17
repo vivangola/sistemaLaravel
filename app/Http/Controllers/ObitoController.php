@@ -56,6 +56,13 @@ class ObitoController extends Controller
                 'msg' => 'Falecido inválido, por favor tente novamente!'
             ]);
         }
+        
+        if($this->contas->find($request->conta)->titular->cpf == $request->falecido){
+            return json_encode([
+                'success'=> false,
+                'msg' => 'Falecido é o titular da conta!'
+            ]);
+        }
 
         try{
             $this->obitos->create([

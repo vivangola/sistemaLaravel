@@ -18,7 +18,7 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='crud' method="POST" action="{{ url('obitos') }}">
+                <form name="frmNovo" class='insert' method="POST" action="{{ url('obitos') }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-2">
@@ -125,7 +125,7 @@
     </div>
 </div>
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
-<script src="{{ url('assets/js/select2.js') }}"></script>
+<script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
 <script>
     $('.select2').select2();
     

@@ -80,11 +80,5 @@
                 "url": "{{ url('assets/js/plugins/dataTablePTBR.json') }}"
             }
         });
-        
-        @if (session('success'))
-            swal("Sucesso!", "", "success");
-        @elseif (session('error'))
-            swal("Atenção!", "{{ session('error') }}", "error");
-        @endif
   </script>
 @endsection

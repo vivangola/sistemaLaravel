@@ -1,31 +1,50 @@
 
-$("form.crud").submit(function(evt){
+$("form.insert").submit(function(evt){
 	evt.preventDefault();
+	submitForm($(this));
+});
+
+$("form.alter").submit(function(evt){
+	evt.preventDefault();
+	swal({
+		title: "Atenção!",
+		text: "Deseja mesmo continuar?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((resposta) => {
+		if (resposta) {
+			submitForm($(this));
+		} 
+	});
+});
+
+function submitForm(form){	
 	$.ajax({
-		url: $(this).attr('action'),
+		url: form.attr('action'),
 		type: 'POST',
 		dataType: 'json',
-		data: $(this).serialize(),
+		data: form.serialize(),
 		success: function(response){
 			if(response.success){
 				swal({ 
 					title: "Sucesso!", 
-					msg: "", 
+					msg: (response.msg).toString(), 
 					type: "success",
-				},function(){ 
+				}).then(() => { 
 					location.reload();
 				});
 			}else{
-				swal("Atenção!", response.msg, "warning");
+				swal("Atenção!", (response.msg).toString(), "warning");
 			}
 		},
 		error: function(response){
 			$.each(response.responseJSON.errors, function( index, value ) {
-				swal("Atenção!", value, "warning");
+				swal("Atenção!", value.toString(), "warning");
 			});
 		}
 	});
-});
+}
 
 $("[name='cep']").keyup(function(){
 	if( (($(this).val()).replace('-','')).length == 8){

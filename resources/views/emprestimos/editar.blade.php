@@ -18,7 +18,7 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='crud' method="POST" action="{{ url("emprestimos/$emprestimo->id") }}">
+                <form name="frmNovo" class='alter' method="POST" action="{{ url("emprestimos/$emprestimo->id") }}">
                     @method('PUT')
                     @csrf
                     <div class="row">
