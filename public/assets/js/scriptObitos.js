@@ -14,7 +14,7 @@
             dataType: 'json',
             success: function(response) {
                 if(response != ""){
-                    var html = $("#falecido").val() ? $('#falecido').html() : '';
+                    var html = $("[name='_method']").val() == 'PUT' ? $('#falecido').html() : '';
                     $.each(response, function(i, dados) {
                         html += '<option value="'+dados.cpf+'">'+dados.nome+'</option>'
                     });
