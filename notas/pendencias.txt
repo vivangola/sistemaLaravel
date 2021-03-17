@@ -5,4 +5,4 @@ Modulos
 - Versao de pagamento do usuario (modelo cednet)
 
 SubModulos
-- Trocar Titular ou Inativar Conta ao registrar obito do titular
+- Transferir dependente para titular 

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-2">
     </div>
-    <div class="col-md-9 col-xs-12">
+    <div class="col-md-8 col-xs-12">
         <div class="tile">
             <div class="row">
                 <div class="col-md-12">
@@ -18,9 +18,10 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='alter' method="POST" action="{{ url("obitos/$obito->id") }}">
+                <form name="frmNovo" class='alterObito' method="POST" action="{{ url("obitos/$obito->id") }}">
                     @method('PUT')
                     @csrf
+                    <input type="hidden" id="inativa" name="inativa" value="0">
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
@@ -124,40 +125,8 @@
 </div>
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
 <script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url('assets/js/scriptObitos.js' )}}"></script>
 <script>
     getPessoas({{ $conta->id }});
-    $('.select2').select2();
-    
-    $("#conta").change(function() {
-        $('#conta option')[0].value == "" ? $('#conta option')[0].remove() : null; 
-        $("#codigo").val(("0000"+$(this).val()).substr(-4));
-    });
-
-    $("#conta").change(function() {
-        getPessoas($(this).val());
-    });
-
-    function getPessoas(id){
-        $.ajax({
-            url: "/contas/" + id,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                if(response != ""){
-                    var html = $("#falecido").html();
-                    $.each(response, function(i, dados) {
-                        html += '<option value="'+dados.cpf+'">'+dados.nome+'</option>'
-                    });
-                    $("#falecido").html(html);
-                }else{
-                    $("#falecido").html("<option value=''>Nenhum Titular ou Dependente encontrado</option'>");
-                    swal("Atenção!", "Nenhum Titular ou Dependente encontrado!", "warning");
-                }
-            },
-            error: function(response) {
-                swal("Atenção!", "Erro ao Consultar Titular/Dependentes!", "error");
-            }
-        });
-    }
 </script>
 @endsection

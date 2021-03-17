@@ -197,6 +197,11 @@ class ContaController extends Controller
         return json_encode($pessoas);
     }
 
+    public function getTitular(Request $request)
+    {
+        return json_encode($this->contas->find($request->c)->titular);
+    }
+
     public function edit($id)
     {
         $conta = $this->contas->find($id);

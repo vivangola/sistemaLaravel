@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-2">
     </div>
-    <div class="col-md-9 col-xs-12">
+    <div class="col-md-8 col-xs-12">
         <div class="tile">
             <div class="row">
                 <div class="col-md-12">
@@ -18,8 +18,9 @@
             </div>
             <hr>
             <div class="tile-body">
-                <form name="frmNovo" class='insert' method="POST" action="{{ url('obitos') }}">
+                <form name="frmNovo" class='insertObito' method="POST" action="{{ url('obitos') }}">
                     @csrf
+                    <input type="hidden" id="inativa" name="inativa" value="0">
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
@@ -60,7 +61,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Data Falecimento</label>
-                                <input type="date" class="form-control" name="data_falecimento" required>
+                                <input type="date" class="form-control" name="data_falecimento" value="{{ date('Y-m-d') }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -126,35 +127,5 @@
 </div>
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
 <script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
-<script>
-    $('.select2').select2();
-    
-    $("#conta").change(function() {
-        $('#conta option')[0].value == "" ? $('#conta option')[0].remove() : null; 
-        $("#codigo").val(("0000"+$(this).val()).substr(-4));
-    });
-
-    $("#conta").change(function() {
-        $.ajax({
-            url: "/contas/" + $(this).val(),
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                if(response != ""){
-                    var html = '';
-                    $.each(response, function(i, dados) {
-                        html += '<option value="'+dados.cpf+'">'+dados.nome+'</option>'
-                    });
-                    $("#falecido").html(html);
-                }else{
-                    $("#falecido").html("<option value=''>Nenhum Titular ou Dependente encontrado</option'>");
-                    swal("Atenção!", "Nenhum Titular ou Dependente encontrado!", "warning");
-                }
-            },
-            error: function(response) {
-                swal("Atenção!", "Erro ao Consultar Titular/Dependentes!", "error");
-            }
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ url('assets/js/scriptObitos.js' )}}"></script>
 @endsection

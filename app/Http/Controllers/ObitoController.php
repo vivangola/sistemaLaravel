@@ -57,11 +57,8 @@ class ObitoController extends Controller
             ]);
         }
         
-        if($this->contas->find($request->conta)->titular->cpf == $request->falecido){
-            return json_encode([
-                'success'=> false,
-                'msg' => 'Falecido é o titular da conta!'
-            ]);
+        if($this->contas->find($request->conta)->titular->cpf == $request->falecido && $request->inativa){
+            $this->inativarConta($request->conta);
         }
 
         try{
@@ -98,12 +95,12 @@ class ObitoController extends Controller
     {
         $obito = $this->obitos->find($id);
         $conta = $this->contas->find($obito->conta_id);
-        $obito->hora_falecimento = date_format(date_create($obito->data_falecimento), 'H:i');
-        $obito->data_falecimento = date_format(date_create($obito->data_falecimento), 'Y-m-d');
-        $obito->hora_velorio = date_format(date_create($obito->data_velorio), 'H:i');
-        $obito->data_velorio = date_format(date_create($obito->data_velorio), 'Y-m-d');
-        $obito->hora_enterro = date_format(date_create($obito->data_enterro), 'H:i');
-        $obito->data_enterro = date_format(date_create($obito->data_enterro), 'Y-m-d');
+        $obito->hora_falecimento = isset($obito->data_falecimento) ? date_format(date_create($obito->data_falecimento), 'H:i') : null;
+        $obito->data_falecimento = isset($obito->data_falecimento) ? date_format(date_create($obito->data_falecimento), 'Y-m-d') : null;
+        $obito->hora_velorio = isset($obito->data_velorio) ? date_format(date_create($obito->data_velorio), 'H:i') : null;
+        $obito->data_velorio = isset($obito->data_velorio) ? date_format(date_create($obito->data_velorio), 'Y-m-d') : null;
+        $obito->hora_enterro = isset($obito->data_enterro) ? date_format(date_create($obito->data_enterro), 'H:i') : null;
+        $obito->data_enterro = isset($obito->data_enterro) ? date_format(date_create($obito->data_enterro), 'Y-m-d') : null;
         return view('obitos.editar', compact('obito','conta'));
     }
     
@@ -128,6 +125,10 @@ class ObitoController extends Controller
                 'success'=> false,
                 'msg' => 'Falecido inválido, por favor tente novamente!'
             ]);
+        }
+
+        if($this->contas->find($request->conta)->titular->cpf == $request->falecido && $request->inativa){
+            $this->inativarConta($request->conta);
         }
 
         try{
@@ -171,6 +172,19 @@ class ObitoController extends Controller
         }
 
         return $falecido;
+    }
+
+    public function inativarConta($conta){
+        try{
+            $this->contas->find($conta)->update([
+                'tipo_status_id' => 0,
+            ]);            
+        }catch(QueryException $ex){ 
+            return json_encode([
+                'success'=> false,
+                'msg' => 'Erro ao Inativar a Conta!'
+            ]);
+        }    
     }
 
 }

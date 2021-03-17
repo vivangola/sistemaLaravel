@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/home', 'HomeController@index');
     Route::get('/logout','Auth\LoginController@logout');
+    Route::get('/contas/titular', 'ContaController@getTitular');
+
     Route::resource('/funcionarios','FuncionarioController');
     Route::resource('/usuarios','UsuarioController');
     Route::resource('/planos','PlanoController');
@@ -29,5 +31,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('/emprestimos', 'EmprestimoController');
     Route::resource('/mensalidades', 'MensalidadeController');
     Route::resource('/obitos', 'ObitoController');
+    
 
 });
