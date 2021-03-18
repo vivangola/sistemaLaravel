@@ -14,7 +14,7 @@ BEGIN
 		select distinct c.id as conta 
 		from contas c 
 			left join mensalidades a on a.conta_id = c.id 
-		where a.data_pagamento is null
+		where a.data_pagamento is null and c.tipo_status_id <> 0
 	);
 	
 	-- em debito
@@ -25,7 +25,7 @@ BEGIN
 	-- ativa
 	update contas 
 		set tipo_status_id = 1, updated_at = now()
-	where id not in (select conta from B) and (id = cod_conta or cod_conta = -1);
+	where id not in (select conta from B) and tipo_status_id <> 0 and (id = cod_conta or cod_conta = -1);
 		
 	create temporary table A as (
 		select c.id as conta 

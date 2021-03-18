@@ -1,8 +1,0 @@
-PENDENCIAS 
-
-Modulos
-- Gráficos Home
-- Versao de pagamento do usuario (modelo cednet)
-
-SubModulos
-- Desconsiderar atualizaDebito_sp os que estao ativos com titular falecido
