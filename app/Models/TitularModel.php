@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Datetime;
 
 class TitularModel extends Model
 {
@@ -16,6 +17,12 @@ class TitularModel extends Model
 
     public function dependentes(){
         return $this->hasMany('App\Models\DependenteModel', 'titular_id', 'id');
+    }
+
+    public function idade(){
+        $date = new DateTime($this->nascimento);
+        $interval = $date->diff(new DateTime(date('Y-m-d')));
+        return $interval->format('%Y');;
     }
 
 }

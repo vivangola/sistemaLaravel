@@ -118,7 +118,15 @@ class ContaController extends Controller
                 'success'=> false,
                 'msg' => 'Erro ao Salvar Titular!'
             ]);
-        }    
+        }  
+        
+        if($this->titulares->find($titularID)->idade() < 18){
+            DB::rollback();
+            return json_encode([
+                'success'=> false,
+                'msg' => 'O Titular deve ser maior de 18 anos!'
+            ]);
+        }
 
         //dependentes
         if($request->dcpf){
@@ -279,7 +287,15 @@ class ContaController extends Controller
                 'success'=> false,
                 'msg' => 'Erro ao Salvar Titular!'
             ]);
-        }    
+        } 
+        
+        if($this->titulares->find($titularID)->idade() < 18){
+            DB::rollback();
+            return json_encode([
+                'success'=> false,
+                'msg' => 'O Titular deve ser maior de 18 anos!'
+            ]);
+        }
 
         //dependentes
         if($request->dcpf){
@@ -349,5 +365,14 @@ class ContaController extends Controller
             'success'=> true,
             'msg' => 'Excluído com sucesso!'
         ]);
+    }
+
+    function calcularIdade($date){
+        if(strtotime($date) === false){
+          return '';
+        }
+        $date = new DateTime($date);
+        $interval = $date->diff( new DateTime( date('Y-m-d') ) );
+        return $interval;
     }
 }

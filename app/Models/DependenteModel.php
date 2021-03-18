@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Datetime;
 
 class DependenteModel extends Model
 {
@@ -12,6 +13,12 @@ class DependenteModel extends Model
 
     public function parentesco(){
         return $this->hasOne('App\Models\ParentescoModel', 'id', 'parentesco_id');
+    }
+
+    public function idade(){
+        $date = new DateTime($this->nascimento);
+        $interval = $date->diff(new DateTime(date('Y-m-d')));
+        return $interval->format('%Y');;
     }
 
 }

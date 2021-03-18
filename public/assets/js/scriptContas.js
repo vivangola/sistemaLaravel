@@ -51,3 +51,15 @@
     function removeRow(item) {
         $("#tblDependentes")[0].deleteRow(item.parentNode.parentNode.rowIndex);
     }
+
+    function tornarTitular(item) {
+        $.each($(".titular").serializeArray(), function (_, field) {
+            if(field.name != "_method" || field.name != "_token"){
+                $("[name='"+field.name+"']").val('');
+            }
+         })
+        $("[name='nome']").val($(item.parentNode.parentNode).find('td:nth-child(1) > input').val());
+        $("[name='cpf']").val($(item.parentNode.parentNode).find('td:nth-child(2) > input').val());
+        $("[name='nascimento']").val($(item.parentNode.parentNode).find('td:nth-child(3) > input').val());
+        removeRow(item);
+    }

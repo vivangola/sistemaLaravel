@@ -75,19 +75,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Nome</label>
-                                <input class="form-control" type="text" name="nome" placeholder="" value="{{ $conta->titular->nome }}" required>
+                                <input class="form-control titular" type="text" name="nome" placeholder="" value="{{ $conta->titular->nome }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CPF</label>
-                                <input class="form-control" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $conta->titular->cpf }}" required>
+                                <input class="form-control titular" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $conta->titular->cpf }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">RG</label>
-                                <input class="form-control" type="text" name="rg" placeholder="" value="{{ $conta->titular->rg }}" required>
+                                <input class="form-control titular" type="text" name="rg" placeholder="" value="{{ $conta->titular->rg }}" required>
                             </div>
                         </div>
                     </div>
@@ -95,19 +95,19 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="control-label">Endereço</label>
-                                <input class="form-control" type="text" name="endereco" placeholder="" value="{{ $conta->titular->endereco }}" required>
+                                <input class="form-control titular" type="text" name="endereco" placeholder="" value="{{ $conta->titular->endereco }}" required>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label class="control-label">Número</label>
-                                <input class="form-control" type="text" name="numero" placeholder="" value="{{ $conta->titular->numero }}" required>
+                                <input class="form-control titular" type="text" name="numero" placeholder="" value="{{ $conta->titular->numero }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Bairro</label>
-                                <input class="form-control" type="text" name="bairro" placeholder="" value="{{ $conta->titular->bairro }}" required>
+                                <input class="form-control titular" type="text" name="bairro" placeholder="" value="{{ $conta->titular->bairro }}" required>
                             </div>
                         </div>
                     </div>
@@ -115,13 +115,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Cidade</label>
-                                <input class="form-control" type="text" name="cidade" placeholder="" value="{{ $conta->titular->cidade }}" required>
+                                <input class="form-control titular" type="text" name="cidade" placeholder="" value="{{ $conta->titular->cidade }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Estado</label>
-                                <select class="form-control" name="estado" required>
+                                <select class="form-control titular" name="estado" required>
                                     @foreach($estados as $estado)
                                     <option value="{{$estado->uf}}" @if($conta->titular->estado_uf == $estado->uf) selected @endif >{{$estado->estado}}</option>
                                     @endforeach
@@ -131,13 +131,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CEP</label>
-                                <input class="form-control" type="text" name="cep" placeholder="" maxlength="9" value="{{ $conta->titular->cep }}" required>
+                                <input class="form-control titular" type="text" name="cep" placeholder="" maxlength="9" value="{{ $conta->titular->cep }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Estado Civil</label>
-                                <select class="form-control" name="civil" required>
+                                <select class="form-control titular" name="civil" required>
                                     @foreach($civil as $dados)
                                     <option value="{{ $dados->id }}" @if($conta->titular->estado_civil_id == $dados->id) selected @endif >{{$dados->estado_civil}}</option>
                                     @endforeach
@@ -149,19 +149,19 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Email</label>
-                                <input class="form-control" type="email" name="email" placeholder="" value="{{ $conta->titular->email }}" required>
+                                <input class="form-control titular" type="email" name="email" placeholder="" value="{{ $conta->titular->email }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Telefone</label>
-                                <input class="form-control" type="text" name="telefone" placeholder="" value="{{ $conta->titular->telefone }}" required>
+                                <input class="form-control titular" type="text" name="telefone" placeholder="" value="{{ $conta->titular->telefone }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Nascimento</label>
-                                <input class="form-control" type="date" name="nascimento" placeholder="" value="{{ $conta->titular->nascimento }}" required>
+                                <input class="form-control titular" type="date" name="nascimento" placeholder="" value="{{ $conta->titular->nascimento }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -169,11 +169,11 @@
                                 <label class="control-label">Sexo</label>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="sexo" value="M" @if($conta->titular->sexo == 'M') checked @endif required>Masculino
+                                        <input class="form-check-input titular" type="radio" name="sexo" value="M" @if($conta->titular->sexo == 'M') checked @endif required>Masculino
                                     </label>
                                     <br>
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="sexo" value="F" @if($conta->titular->sexo == 'F') checked @endif required>Feminino
+                                        <input class="form-check-input titular" type="radio" name="sexo" value="F" @if($conta->titular->sexo == 'F') checked @endif required>Feminino
                                     </label>
                                 </div>
                             </div>
@@ -202,7 +202,8 @@
                                         <th width="20%">CPF</th>
                                         <th width="10%">Nascimento</th>
                                         <th width="20%">Parentesco</th>
-                                        <td width="5%"></td>
+                                        <td width="5%">Tornar Titular</td>
+                                        <td width="5%">Excluir</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -216,6 +217,10 @@
                                         <option value="{{ $parentesco->id }}" @if($dados->parentesco_id == $parentesco->id) selected @endif>{{$parentesco->parentesco}}</option>
                                         @endforeach
                                         </select></td>
+                                        <td>@if ($dados->idade() >= 18)
+                                                <button class='btn btn-primary' type='button' value='Tornar Titular' onclick='tornarTitular(this)'><i class='fa fa-arrow-up'></i></button>
+                                            @endif
+                                        </td>
                                         <td><button class='btn btn-danger' type='button' value='Excluir' onclick='removeRow(this)'><i class='fa fa-trash'></i></button></td>
                                     </tr>
                                     @endforeach
