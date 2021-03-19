@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +11,6 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Login - Sistema Funerário</title>
 </head>
-
 <body>
     <section class="material-half-bg">
         <div class="cover"></div>
@@ -48,11 +46,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Esqueci minha senha</a></p>
+                    <!--p class="semibold-text mb-2"><a href="#" data-toggle="flip">Esqueci minha senha</a></p-->
                 </div>
                 <div class="form-group btn-container">
-                    <button type="submit" class="btn btn-primary btn-block"><i
-                            class="fa fa-sign-in fa-lg fa-fw"></i>Acessar</button>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Acessar</button>
                 </div>
             </form>
             <form class="forget-form" method="post" action="resetarSenha">
@@ -62,12 +59,10 @@
                     <input class="form-control" type="text" placeholder="Email">
                 </div>
                 <div class="form-group btn-container">
-                    <button class="btn btn-primary btn-block" type="submit"><i
-                            class="fa fa-unlock fa-lg fa-fw"></i>Enviar</button>
+                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-unlock fa-lg fa-fw"></i>Enviar</button>
                 </div>
                 <div class="form-group mt-3">
-                    <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i>
-                            Voltar ao Login</a></p>
+                    <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Voltar ao Login</a></p>
                 </div>
             </form>
         </div>
