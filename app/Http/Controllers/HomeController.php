@@ -58,7 +58,7 @@ class HomeController extends Controller
         $select = $this->meses->selectRaw('meses.id as mes, sum(b.valor) as soma')
                                     ->leftjoin('mensalidades as b', function($join){
                                         $join->on('meses.id', '=', DB::raw('month(b.data_pagamento)'));
-                                        $join->on('b.data_pagamento', '>=', DB::raw(date('Y').'-01-01')); 
+                                        $join->on('b.data_pagamento', '>=', DB::raw('"'.date('Y').'-01-01"')); 
                                     })->groupBy('mes')->orderBy('mes')->get();
         foreach($select as $dados){
             array_push($array, $dados->soma);

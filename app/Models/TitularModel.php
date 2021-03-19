@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ObitoModel;
 use Datetime;
 
 class TitularModel extends Model
@@ -23,6 +24,11 @@ class TitularModel extends Model
         $date = new DateTime($this->nascimento);
         $interval = $date->diff(new DateTime(date('Y-m-d')));
         return $interval->format('%Y');;
+    }
+
+    public function faleceu(){
+        $obitos = new ObitoModel;
+        return $obitos->where('cpf_falecido', $this->cpf)->exists();
     }
 
 }

@@ -165,8 +165,7 @@ class ContaController extends Controller
         }
 
         try{
-            DB::statement('call gerarMensalidade_sp('.$contaID.')');
-            DB::statement('call atualizaDebito_sp('.$contaID.')');
+            $this->gerarMensalidade($contaID);
         }catch(QueryException $ex){ 
             DB::rollback();
                 return json_encode([
@@ -203,11 +202,6 @@ class ContaController extends Controller
             }
         }
         return json_encode($pessoas);
-    }
-
-    public function getTitular(Request $request)
-    {
-        return json_encode($this->contas->find($request->c)->titular);
     }
 
     public function edit($id)
@@ -339,9 +333,36 @@ class ContaController extends Controller
                 }  
             }
         }
+
+        if($request->status == 0){
+            try{
+                $this->contas->find($request->conta)->inativar();         
+            }catch(QueryException $ex){ 
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao Inativar a Conta!'
+                ]);
+            }   
+        }else{
+            if($this->contas->find($request->conta)->titular->faleceu()){
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Titular já falecido, atualize por algum dependente!'
+                ]);
+            }else{
+                try{
+                    $this->gerarMensalidade($id);
+                }catch(QueryException $ex){ 
+                        return json_encode([
+                            'success'=> false,
+                            'msg' => 'Erro ao Gerar Mensalidade!'
+                    ]);
+                }  
+            }
+        }
         
         DB::commit();
-       
+
         return json_encode([
             'success'=> true,
             'msg' => ''
@@ -367,7 +388,18 @@ class ContaController extends Controller
         ]);
     }
 
-    function calcularIdade($date){
+    public function gerarMensalidade($contaID)
+    {
+        DB::statement('call gerarMensalidade_sp('.$contaID.')');
+    }
+
+    public function getTitular(Request $request)
+    {
+        return json_encode($this->contas->find($request->c)->titular);
+    }
+
+    function calcularIdade($date)
+    {
         if(strtotime($date) === false){
           return '';
         }

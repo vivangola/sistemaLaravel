@@ -1,4 +1,4 @@
-DELIMITER $$
+$$
 CREATE PROCEDURE `atualizaDebito_sp`(IN cod_conta INTEGER)
 BEGIN
 
@@ -14,7 +14,7 @@ BEGIN
 		select distinct c.id as conta 
 		from contas c 
 			left join mensalidades a on a.conta_id = c.id 
-		where a.data_pagamento is null and c.tipo_status_id <> 0
+		where a.data_pagamento is null and c.tipo_status_id <> 0 and a.created_at >= date_add(date_format(now() ,'%Y-%m-01'), interval -3 month)
 	);
 	
 	-- em debito
@@ -31,13 +31,13 @@ BEGIN
 		select c.id as conta 
 		from contas c 
 			left join mensalidades a on a.conta_id = c.id 
-		where a.data_pagamento is null
+		where a.data_pagamento is null and a.created_at >= date_add(date_format(now() ,'%Y-%m-01'), interval -3 month)
 	);
 	
 	-- inativa 
 	update contas 
 		set tipo_status_id = 0, updated_at = now()
-	where id in (select conta from A group by conta having count(conta) > 3) and (id = cod_conta or cod_conta = -1);
+	where id in (select conta from A group by conta having count(conta) >= 3) and (id = cod_conta or cod_conta = -1);
 	
 	drop table A;
     drop table B;

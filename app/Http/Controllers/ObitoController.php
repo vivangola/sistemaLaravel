@@ -58,7 +58,14 @@ class ObitoController extends Controller
         }
         
         if($this->contas->find($request->conta)->titular->cpf == $request->falecido && $request->inativa){
-            $this->inativarConta($request->conta);
+            try{
+                $this->contas->find($request->conta)->inativar();         
+            }catch(QueryException $ex){ 
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao Inativar a Conta!'
+                ]);
+            }    
         }
 
         try{
@@ -128,7 +135,14 @@ class ObitoController extends Controller
         }
 
         if($this->contas->find($request->conta)->titular->cpf == $request->falecido && $request->inativa){
-            $this->inativarConta($request->conta);
+            try{
+                $this->contas->find($request->conta)->inativar();         
+            }catch(QueryException $ex){ 
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao Inativar a Conta!'
+                ]);
+            }   
         }
 
         try{
@@ -159,7 +173,8 @@ class ObitoController extends Controller
         //
     }
 
-    public function checkFalecido($cpf, $update){
+    public function checkFalecido($cpf, $update)
+    {
 
         $falecido = $this->titular->where('cpf', $cpf)->exists();
 
@@ -172,19 +187,6 @@ class ObitoController extends Controller
         }
 
         return $falecido;
-    }
-
-    public function inativarConta($conta){
-        try{
-            $this->contas->find($conta)->update([
-                'tipo_status_id' => 0,
-            ]);            
-        }catch(QueryException $ex){ 
-            return json_encode([
-                'success'=> false,
-                'msg' => 'Erro ao Inativar a Conta!'
-            ]);
-        }    
     }
 
 }
