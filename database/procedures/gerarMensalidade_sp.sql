@@ -1,4 +1,4 @@
-$$
+DELIMITER $$
 CREATE PROCEDURE `gerarMensalidade_sp`(IN codConta int)
 BEGIN
 
@@ -7,4 +7,5 @@ BEGIN
 	from contas a inner join planos b on a.plano_id = b.id 
 	where a.id = codConta and not exists(select id from mensalidades where conta_id = a.id and (year(created_at) = year(now()) and month(created_at) = month(now())) limit 1);
     
-END;$$
+END $$
+DELIMITER;

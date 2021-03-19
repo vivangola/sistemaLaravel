@@ -1,5 +1,5 @@
-$$
-CREATE PROCEDURE `atualizaDebito_sp`(IN cod_conta INTEGER)
+DELIMITER $$
+CREATE PROCEDURE atualizaDebito_sp(IN cod_conta INTEGER)
 BEGIN
 
 	/*
@@ -42,4 +42,5 @@ BEGIN
 	drop table A;
     drop table B;
 	
-END;$$
+END $$
+DELIMITER;

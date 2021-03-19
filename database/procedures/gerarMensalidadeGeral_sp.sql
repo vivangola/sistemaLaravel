@@ -23,7 +23,8 @@ BEGIN
     drop table A;
 	drop table B;
 		
-END;$$
+END $$
+DELIMITER;
 
 
 
