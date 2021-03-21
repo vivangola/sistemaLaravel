@@ -33,7 +33,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Mensalidade</label>
-                                    <input class="pull-center form-control" type="text" name="mensalidade" placeholder="" required>
+                                    <input class="pull-center form-control money" type="text" name="mensalidade" placeholder="" required>
                                 </div>
                             </div>
                         </div>

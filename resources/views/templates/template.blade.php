@@ -53,13 +53,13 @@
         @include('templates.footer')
 
         <!-- Essential javascripts for application to work-->
-        <script type="text/javascript" src="{{ url('assets/js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/plugins/mask.js') }}"></script>
+        <script type="text/javascript" src="{{ url('assets/js/plugins/maskmoney.js') }}"></script>
         <script type="text/javascript" src="{{ url('assets/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('assets/js/main.js') }}"></script>
         <script type="text/javascript" src="{{ url('assets/js/plugins/bootstrap-notify.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('assets/js/plugins/pace.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url('assets/js/script.js' )}}"></script>
-            
+        <script type="text/javascript" src="{{ url('assets/js/script.js' )}}"></script>         
         
     </body>
 </html>

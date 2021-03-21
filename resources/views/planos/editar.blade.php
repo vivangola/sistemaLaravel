@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Mensalidade</label>
-                                    <input class="pull-center form-control" type="text" name="mensalidade" placeholder="" value="{{ $plano->mensalidade }}" required>
+                                    <input class="pull-center form-control money" type="text" name="mensalidade" placeholder="" value="{{ number_format($plano->mensalidade, 2, ',', '') }}" required>
                                 </div>
                             </div>
                         </div>

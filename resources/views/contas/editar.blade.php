@@ -51,7 +51,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label">Mensalidade</label>
-                            <input class="form-control" type="text" id="mensalidade" name="mensalidade" value="{{ $conta->plano->mensalidade }}" readonly>
+                            <input class="form-control money" type="text" id="mensalidade" name="mensalidade" value="{{ number_format($conta->plano->mensalidade,2,',','') }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -81,7 +81,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CPF</label>
-                                <input class="form-control titular" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $conta->titular->cpf }}" required>
+                                <input class="form-control titular cpf" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $conta->titular->cpf }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -131,7 +131,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CEP</label>
-                                <input class="form-control titular" type="text" name="cep" placeholder="" maxlength="9" value="{{ $conta->titular->cep }}" required>
+                                <input class="form-control titular cep" type="text" name="cep" placeholder="" maxlength="9" value="{{ $conta->titular->cep }}" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -251,7 +251,4 @@
 <link href="{{ url('assets/css/select2.css') }}" rel="stylesheet" />
 <script type="text/javascript" src="{{ url('assets/js/scriptContas.js' )}}"></script>
 <script src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
-<script>
-    $('.select2').select2();
-</script>
 @endsection

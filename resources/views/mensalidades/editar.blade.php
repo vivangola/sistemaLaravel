@@ -42,7 +42,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label">CPF</label>
-                            <input class="form-control" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $mensalidade->conta->titular->cpf }}" readonly>
+                            <input class="form-control cpf" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $mensalidade->conta->titular->cpf }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -65,7 +65,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label">Valor</label>
-                            <input class="form-control" type="text" id="mensalidade" name="mensalidade" value="{{ $mensalidade->conta->plano->mensalidade }}" readonly>
+                            <input class="form-control money" type="text" id="mensalidade" name="mensalidade" value="{{ number_format($mensalidade->conta->plano->mensalidade, 2, ',','.') }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">

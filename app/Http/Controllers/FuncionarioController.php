@@ -32,7 +32,6 @@ class FuncionarioController extends Controller
 
     public function store(Request $request)
     {
-
         $this->validate($request,[
             'cpf' => 'required|string|unique:funcionarios',
             'nome' => 'required|string',
@@ -87,7 +86,6 @@ class FuncionarioController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $this->validate($request,[
             'cpf' => 'required|unique:funcionarios,cpf,'.$id,
             'nome' => 'required|string',
@@ -136,7 +134,6 @@ class FuncionarioController extends Controller
                 'success'=> false,
                 'msg' => 'Erro ao Excluir!'
             ]);
-            return back()->with('error', 'Erro ao Excluir');
         }        
           
         return json_encode([

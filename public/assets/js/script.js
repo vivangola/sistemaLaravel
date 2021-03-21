@@ -20,6 +20,18 @@ $("form.alter").submit(function(evt){
 });
 
 function submitForm(form){	
+	
+	$.each($(".cpf, .cep"), function( index, input ) {
+		$("[name='"+input.name+"']").val($("[name='"+input.name+"']").val().replace(/[^\w\s]/gi, ''));
+	});
+	$.each($(".money"), function( index, input ) {
+		$("[name='"+input.name+"']").val($("[name='"+input.name+"']").val().replace(',','.').replace(/[^0-9\.]+/g, ''));
+	});
+	if(typeof $("[name='dcpf[]']").val() != "undefined"){
+		$.each($("[name='dcpf[]']"), function( index, input ) {
+			$("[name='dcpf[]']")[index].value=(input.value.replace(/[^\w\s]/gi, ''));
+		});
+	}
 	$.ajax({
 		url: form.attr('action'),
 		type: 'POST',
@@ -35,11 +47,13 @@ function submitForm(form){
 					location.reload();
 				});
 			}else{
+				startMaskMoney();
 				swal("Atenção!", (response.msg).toString(), "warning");
 			}
 		},
 		error: function(response){
 			$.each(response.responseJSON.errors, function( index, value ) {
+				startMaskMoney();
 				swal("Atenção!", value.toString(), "warning");
 			});
 		}
@@ -47,7 +61,7 @@ function submitForm(form){
 }
 
 $("[name='cep']").keyup(function(){
-	if( (($(this).val()).replace('-','')).length == 8){
+	if((($(this).val()).replace('-','').replaceAll('_','')).length == 8){
 		$.ajax({
 			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/',
 			type: 'GET',
@@ -61,7 +75,7 @@ $("[name='cep']").keyup(function(){
 					$("[name='bairro']").val(response.bairro);
 					$("[name='cep']").val(response.cep);
 					$("[name='cidade']").val(response.localidade);
-					$("[name='estado'").val(response.uf);
+					$("[name='estado']").val(response.uf);
 				}
 			},
 			error: function(response){

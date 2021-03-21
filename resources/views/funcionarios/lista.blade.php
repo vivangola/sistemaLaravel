@@ -24,7 +24,6 @@
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
                                       <th>Nome</th>
-                                      <th>CPF</th>
                                       <th>Cargo</th>
                                       <th>Telefone</th>
                                       <th>Email</th>
@@ -36,7 +35,6 @@
                                 @foreach($funcionarios as $dados)
                                   <tr>
                                       <td>{{$dados->nome}}</td>
-                                      <td>{{$dados->cpf}}</td>
                                       <td>{{$dados->cargo}}</td>
                                       <td>{{$dados->telefone}}</td>
                                       <td>{{$dados->email}}</td>

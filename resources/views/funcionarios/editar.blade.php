@@ -29,7 +29,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CPF</label>
-                                <input class="form-control" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $funcionario->cpf }}"required>
+                                <input class="form-control cpf" type="text" name="cpf" placeholder="" maxlength="14" value="{{ $funcionario->cpf }}"required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -43,7 +43,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="control-label">Endereço</label>
-                                <input class="form-control" type="text" name="endereco" placeholder="" value="{{ $funcionario->endereco }}">
+                                <input class="form-control" type="text" name="endereco" placeholder="" value="{{ $funcionario->endereco }}" tabIndex="-1" readonly>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -55,7 +55,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Bairro</label>
-                                <input class="form-control" type="text" name="bairro" placeholder="" value="{{ $funcionario->bairro }}">
+                                <input class="form-control" type="text" name="bairro" placeholder="" value="{{ $funcionario->bairro }}" tabIndex="-1" readonly>
                             </div>
                         </div>
                     </div>
@@ -63,13 +63,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Cidade</label>
-                                <input class="form-control" type="text" name="cidade" placeholder="" value="{{ $funcionario->cidade }}">
+                                <input class="form-control" type="text" name="cidade" placeholder="" value="{{ $funcionario->cidade }}" tabIndex="-1" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Estado</label>
-                                <select class="form-control" name="estado">
+                                <select class="form-control" name="estado" tabIndex="-1" readonly>
                                     <option value="">Selecione</option>
                                     @foreach($estados as $estado)
                                         <option value="{{$estado->uf}}" @if($funcionario->estado_uf == $estado->uf) selected @endif >{{$estado->estado}}</option>

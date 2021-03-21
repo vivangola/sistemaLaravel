@@ -35,7 +35,7 @@
                                 @foreach($planos as $dados)
                                   <tr>
                                       <td class="text-center">{{ $dados->plano }}</td>
-                                      <td class="text-center">{{ $dados->mensalidade }}</td>
+                                      <td class="text-center">{{ "R$ ".number_format($dados->mensalidade, 2, ',', '')}}</td>
                                       <td class="text-center">{{ $dados->dependentes }}</td>
                                       <td class="text-center">{{ $dados->carencia }}</td>
                                       <td align="center">

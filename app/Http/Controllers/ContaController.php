@@ -75,11 +75,11 @@ class ContaController extends Controller
                 'msg' => 'Erro ao Salvar Conta!'
             ]);
         }    
-
+        
         // titulares
         $this->validate($request,[
-            'cpf' => 'required|string|unique:titulares',
-            'rg' => 'required|string|unique:titulares',
+            'cpf' => 'required|string|unique:titulares,cpf',
+            'rg' => 'required|string|unique:titulares,rg',
             'nome' => 'required|string',
             'sexo' => 'required|in:M,F',
             'telefone' => 'required|string',
@@ -137,13 +137,11 @@ class ContaController extends Controller
                     'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
                 ]);
             }
-
-            $result=$this->validate($request,[
-                'dnome.*' => 'required|string',
-                'dcpf.*' => 'required|string|unique:dependentes,cpf',
-                'dnascimento.*' => 'required|date',
-                'parentesco.*' => 'required|numeric|exists:parentescos,id'
-            ]);
+            
+            $validaDependentes = $this->validarDependentes($request);
+            if(!$validaDependentes['success']){
+                return json_encode($validaDependentes);
+            }
 
             foreach($request->dcpf as $key => $dados){
                 try{
@@ -240,7 +238,6 @@ class ContaController extends Controller
 
         // titulares
         $titularID = $this->titulares->where('conta_id', $id)->first()->id;
-
         $this->validate($request,[
             'cpf' => 'required|string|unique:titulares,id,'.$titularID,
             'rg' => 'required|string|unique:titulares,id,'.$titularID,
@@ -299,21 +296,22 @@ class ContaController extends Controller
                     'success'=> false,
                     'msg' => 'Quantidade de dependentes inválida de acordo com o plano!'
                 ]);
-            }
+            } 
 
             try {             
                 $this->dependentes->where('titular_id', $titularID)->delete();
             }catch(QueryException $ex){ 
                 DB::rollback();
-                return back()->with('error', 'Erro ao configurar dependentes');
-            }        
+                return json_encode([
+                    'success'=> false,
+                    'msg' => 'Erro ao configurar dependentes!'
+                ]);
+            }  
             
-            $result=$this->validate($request,[
-                'dnome.*' => 'required|string',
-                'dcpf.*' => 'required|string|unique:dependentes,cpf',
-                'dnascimento.*' => 'required|date',
-                'parentesco.*' => 'required|numeric|exists:parentescos,id'
-            ]);
+            $validaDependentes = $this->validarDependentes($request);
+            if(!$validaDependentes['success']){
+                return json_encode($validaDependentes);
+            }
 
             foreach($request->dcpf as $key => $dados){
                 try{
@@ -379,13 +377,43 @@ class ContaController extends Controller
                 'success'=> false,
                 'msg' => 'Erro ao Excluir!'
             ]);
-            return back()->with('error', 'Erro ao Excluir');
         }        
           
         return json_encode([
             'success'=> true,
             'msg' => 'Excluído com sucesso!'
         ]);
+    }
+
+    public function validarDependentes($request){
+        $this->validate($request,[
+            'dnome.*' => 'required|string',
+            'dcpf.*' => 'required|string',
+            'dnascimento.*' => 'required|date',
+            'parentesco.*' => 'required|numeric|exists:parentescos,id'
+        ]);
+        foreach($this->contas->contasAtivas()->all() as $dados){
+            foreach($request->dcpf as $key => $dados2){
+                if($dados->titular->cpf == $request->dcpf[$key]){
+                    return [
+                        'success'=> false,
+                        'msg' => 'Já existe uma Titular com este CPF: '.$request->dcpf[$key]
+                    ];
+                }else{
+                    foreach($dados->titular->dependentes as $dados3){
+                        if($dados3->cpf == $request->dcpf[$key]){
+                            DB::rollback();
+                            return [
+                                'success'=> false,
+                                'msg' => 'Já existe um Dependente com este CPF: '.$request->dcpf[$key]
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        return ['success' => true];
     }
 
     public function gerarMensalidade($contaID)

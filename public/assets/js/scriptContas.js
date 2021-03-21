@@ -1,4 +1,4 @@
-
+    
     $("#btnAdd").click(function() {
         var rows = $("#tblDependentes tbody tr").length;
         if ($("#tblDependentes tbody tr").length <= $("#qtd").val()) {
@@ -7,7 +7,13 @@
             row.insertCell(1).innerHTML = '<input type="text" class="text-center form-control" name="dcpf[]" required>';
             row.insertCell(2).innerHTML = '<input type="date" class="text-center form-control" name="dnascimento[]" required>';
             row.insertCell(3).innerHTML = '<select class="text-center form-control" name="parentesco[]" required>'+$('#parentesco :selected').text() + $("#parentesco").html();+'</select>';
-            row.insertCell(4).innerHTML = "<button class='btn btn-danger' type='button' value='Excluir' onclick='removeRow(this)'><i class='fa fa-trash'></i></button>";
+            if($("#tblDependentes tr")[0].cells.length == 6){
+                row.insertCell(4).innerHTML = '';
+                row.insertCell(5).innerHTML = "<button class='btn btn-danger' type='button' value='Excluir' onclick='removeRow(this)'><i class='fa fa-trash'></i></button>";
+            }else{
+                row.insertCell(4).innerHTML = "<button class='btn btn-danger' type='button' value='Excluir' onclick='removeRow(this)'><i class='fa fa-trash'></i></button>";
+            }
+            $("[name='dcpf[]'").mask('999.999.999-99');
         } else {
             swal({
                 title: "Atenção!",
@@ -26,10 +32,11 @@
             dataType: 'json',
             success: function(response) {
                 if (rows <= response.dependentes) {
-                    $('#mensalidade').val(response.mensalidade);
+                    $('#mensalidade').val(response.mensalidade.toFixed(2));
                     $('#carencia').val(response.carencia);
                     $('#qtd').val(response.dependentes);
                     $('#previous').val(response.id);
+                    startMaskMoney();
                 } else {
                     swal({
                         title: "Atenção!",
@@ -37,6 +44,7 @@
                         type: "warning",
                     });
                     $('#plano').val($("#previous").val());
+                    $('.select2').select2();
                 }
             },
             error: function(response) {
@@ -46,7 +54,6 @@
             }
         });
     });
-
 
     function removeRow(item) {
         $("#tblDependentes")[0].deleteRow(item.parentNode.parentNode.rowIndex);

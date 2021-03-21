@@ -28,7 +28,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">CPF</label>
-                                <input class="form-control" type="text" name="cpf" placeholder="" maxlength="14" required>
+                                <input class="form-control cpf" type="text" name="cpf" placeholder="" maxlength="14" required>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -42,7 +42,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="control-label">Endereço</label>
-                                <input class="form-control" type="text" name="endereco" placeholder="">
+                                <input class="form-control" type="text" name="endereco" placeholder="" tabIndex="-1" readonly>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -54,7 +54,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Bairro</label>
-                                <input class="form-control" type="text" name="bairro" placeholder="">
+                                <input class="form-control" type="text" name="bairro" placeholder="" tabIndex="-1" readonly>
                             </div>
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Cidade</label>
-                                <input class="form-control" type="text" name="cidade" placeholder="">
+                                <input class="form-control" type="text" name="cidade" placeholder="" tabIndex="-1" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Estado</label>
-                                <select class="form-control" name="estado">
+                                <select class="form-control" name="estado" tabIndex="-1" readonly>
                                     <option value="">Selecione</option>
                                     @foreach($estados as $estado)
                                     <option value="{{$estado->uf}}">{{$estado->estado}}</option>

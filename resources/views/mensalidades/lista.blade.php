@@ -53,7 +53,7 @@
                                                 </button>
                                             </td>
                                             <td align="center">{{$dados->plano->plano}}</td>
-                                            <td align="center">{{$dados->plano->mensalidade}}</td>
+                                            <td align="center">{{'R$ '.number_format($dados->plano->mensalidade,2,',','')}}</td>
                                             <td align="center">{{$mensalidade->periodo}}</td>
                                             <td align="center">
                                                 <a href="{{url("mensalidades/$mensalidade->id/edit")}}">

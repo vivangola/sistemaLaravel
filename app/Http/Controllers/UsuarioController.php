@@ -130,7 +130,6 @@ class UsuarioController extends Controller
                 'success'=> false,
                 'msg' => 'Erro ao Excluir!'
             ]);
-            return back()->with('error', 'Erro ao Excluir');
         }        
           
         return json_encode([
