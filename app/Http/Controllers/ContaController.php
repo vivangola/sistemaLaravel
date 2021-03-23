@@ -288,6 +288,16 @@ class ContaController extends Controller
             ]);
         }
 
+        try {             
+            $this->dependentes->where('titular_id', $titularID)->delete();
+        }catch(QueryException $ex){ 
+            DB::rollback();
+            return json_encode([
+                'success'=> false,
+                'msg' => 'Erro ao configurar dependentes!'
+            ]);
+        }  
+
         //dependentes
         if($request->dcpf){
             if(count($request->dcpf) > $this->contas->find($id)->plano->dependentes){
@@ -298,16 +308,6 @@ class ContaController extends Controller
                 ]);
             } 
 
-            try {             
-                $this->dependentes->where('titular_id', $titularID)->delete();
-            }catch(QueryException $ex){ 
-                DB::rollback();
-                return json_encode([
-                    'success'=> false,
-                    'msg' => 'Erro ao configurar dependentes!'
-                ]);
-            }  
-            
             $validaDependentes = $this->validarDependentes($request);
             if(!$validaDependentes['success']){
                 return json_encode($validaDependentes);
