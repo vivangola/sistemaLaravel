@@ -42,13 +42,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tamanho</label>
-                                    <input class="pull-center form-control" type="numeric" name="tamanho" placeholder="" value="{{ $material->tamanho }}" >
+                                    <input class="pull-center form-control" type="text" name="tamanho" placeholder="" value="{{ $material->tamanho }}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Qtd. Mínima</label>
-                                    <input class="pull-center form-control" type="numeric" name="quantidade" placeholder="" value="{{ $material->qtd_minima }}" required>
+                                    <input class="pull-center form-control" type="number" name="quantidade" placeholder="" value="{{ $material->qtd_minima }}" required>
                                 </div>
                             </div>
                         </div>

@@ -42,7 +42,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Dependentes</label>
-                                    <input class="pull-center form-control" type="numeric" name="dependentes" placeholder="" value="{{ $plano->dependentes }}" required>
+                                    <input class="pull-center form-control" type="number" name="dependentes" placeholder="" value="{{ $plano->dependentes }}" required>
                                 </div>
                             </div>
                         </div>

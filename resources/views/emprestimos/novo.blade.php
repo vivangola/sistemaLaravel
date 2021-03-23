@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Tamanho</label>
-                                <input class="pull-center form-control" type="numeric" id="tamanho" readonly>
+                                <input class="pull-center form-control" type="text" id="tamanho" readonly>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label">Quantidade</label>
-                                <input class="pull-center form-control" type="numeric" name="quantidade" value="1">
+                                <input class="pull-center form-control" type="number" name="quantidade" value="1">
                             </div>
                         </div>
                     </div>

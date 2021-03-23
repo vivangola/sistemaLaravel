@@ -54,7 +54,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Quantidade</label>
-                                    <input class="pull-center form-control" type="numeric" name="quantidade" placeholder="" required>
+                                    <input class="pull-center form-control" type="number" name="quantidade" placeholder="" required>
                                 </div>
                             </div>
                         </div>

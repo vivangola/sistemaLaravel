@@ -41,7 +41,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Dependentes</label>
-                                    <input class="pull-center form-control" type="numeric" name="dependentes" placeholder="" required>
+                                    <input class="pull-center form-control" type="number" name="dependentes" placeholder="" required>
                                 </div>
                             </div>
                         </div>

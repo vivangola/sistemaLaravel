@@ -41,13 +41,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Tamanho</label>
-                                    <input class="pull-center form-control" type="numeric" name="tamanho" placeholder="">
+                                    <input class="pull-center form-control" type="text" name="tamanho" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Qtd. Mínima</label>
-                                    <input class="pull-center form-control" type="numeric" name="quantidade" placeholder="" required>
+                                    <input class="pull-center form-control" type="number" name="quantidade" placeholder="" required>
                                 </div>
                             </div>
                         </div>
