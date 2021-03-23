@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('templates.template2')
 @section('title','Mensalidade')
 
 @section('titulo','MENSALIDADE')
@@ -9,12 +9,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
-            <form name="frmNovo" class='alter' method="POST" action="{{ url("mensalidades/$mensalidade->id") }}">
+            <form name="frmNovo" class='alter' method="POST" action="{{ url("pagamentos/$mensalidade->id") }}">
                 @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-md-9">
-                        <h3 class="tile-title">Registrar Pagamento</h3>
+                        <h3 class="tile-title">Pagar Mensalidade</h3>
                     </div>
                 </div>
                 <br>
@@ -90,7 +90,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <a href="{{ url('mensalidades') }}">
+                        <a href="{{ url('pagamentos') }}">
                             <button type="button" class="btn btn-primary" style="width:100px"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</button>
                         </a>&nbsp;
                         <input type="submit" class="btn btn-primary" style="width:100px" value="Enviar">

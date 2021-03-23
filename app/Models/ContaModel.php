@@ -13,8 +13,12 @@ class ContaModel extends Model
     protected $table = 'contas';
     protected $fillable = ['plano_id','tipo_status_id'];
     
-    public function contasAtivas(){
-        return $this->all()->where('tipo_status_id','<>',0);
+    public function contasAtivas($id = null){
+        if($id){
+            return $this->where('id',$id)->where('tipo_status_id','<>',0);
+        }else{
+            return $this->all()->where('tipo_status_id','<>',0);
+        }
     }
 
     public function titular(){

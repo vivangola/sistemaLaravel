@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'Auth\LoginController@index');
+Route::resource('/pagamentos', 'PagamentoController');
 
 Route::group(['middleware' => ['auth']], function(){
     
@@ -32,5 +33,4 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('/mensalidades', 'MensalidadeController');
     Route::resource('/obitos', 'ObitoController');
     
-
 });

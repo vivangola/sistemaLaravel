@@ -239,8 +239,8 @@ class ContaController extends Controller
         // titulares
         $titularID = $this->titulares->where('conta_id', $id)->first()->id;
         $this->validate($request,[
-            'cpf' => 'required|string|unique:titulares,id,'.$titularID,
-            'rg' => 'required|string|unique:titulares,id,'.$titularID,
+            'cpf' => 'required|string|unique:titulares,cpf,'.$titularID,
+            'rg' => 'required|string|unique:titulares,rg,'.$titularID,
             'nome' => 'required|string',
             'sexo' => 'required|in:M,F',
             'telefone' => 'required|string',
