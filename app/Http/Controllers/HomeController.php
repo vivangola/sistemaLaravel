@@ -45,8 +45,11 @@ class HomeController extends Controller
 
     public function getNovasContas(){
         $array = [];
-        $select = $this->contas->selectRaw('month(created_at) as mes, count(0) as cont')
-                               ->where('created_at','>=',date('Y').'-01-01')->groupBy('mes')->orderBy('mes')->get();
+        $select = $this->meses->selectRaw('meses.id as mes, count(b.id) as cont')
+                                    ->leftjoin('contas as b', function($join){
+                                        $join->on('meses.id', '=', DB::raw('month(b.created_at)'));
+                                        $join->on('b.created_at', '>=', DB::raw('"'.date('Y').'-01-01"')); 
+                                    })->groupBy('mes')->orderBy('mes')->get();
         foreach($select as $dados){
             array_push($array, $dados->cont);
         }

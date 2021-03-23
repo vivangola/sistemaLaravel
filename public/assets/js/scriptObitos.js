@@ -19,9 +19,6 @@
                         html += '<option value="'+dados.cpf+'">'+dados.nome+'</option>'
                     });
                     $("#falecido").html(html);
-                }else{
-                    $("#falecido").html("<option value=''>Nenhum Titular ou Dependente encontrado</option'>");
-                    swal("Atenção!", "Nenhum Titular ou Dependente encontrado!", "warning");
                 }
             },
             error: function(response) {
