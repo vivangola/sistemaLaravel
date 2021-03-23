@@ -2,4 +2,6 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 $.browser={};(function(){$.browser.msie=false;$.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)\./)){$.browser.msie=true;$.browser.version=RegExp.$1;}})();
 $(".cpf").mask('999.999.999-99');
 $(".cep").mask('99999-999');
+$(".cartao").mask('9999 9999 9999 9999');
+$(".expiracao").mask('99/9999');
 $("[name='dcpf[]']").mask('999.999.999-99');

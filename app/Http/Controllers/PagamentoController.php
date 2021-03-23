@@ -57,7 +57,7 @@ class PagamentoController extends Controller
     public function edit($id)
     {
         $mensalidade = $this->mensalidades->where(['id' => $id, 'data_pagamento' => null])->first();
-        $formasPagamento = $this->formasPagamento->all();
+        $formasPagamento = $this->formasPagamento->all()->where('id',1);
         $data = date('Y-m-d');
         
         if(!$mensalidade){
