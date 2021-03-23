@@ -48,7 +48,7 @@ class ContaController extends Controller
         $estados = $this->estados->all();
         $status = $this->status->all()->sortby('status');
         $civil = $this->civil->all()->sortby('estado_civil');
-        $planos = $this->planos->all()->sortby('plano');
+        $planos = $this->planos->planosAtivos()->sortby('plano');
         $parentescos = $this->parentescos->all()->sortby('parentesco');
         return view('contas.novo', compact('estados', 'status', 'civil','planos','parentescos'));
     }
@@ -208,7 +208,7 @@ class ContaController extends Controller
         $estados = $this->estados->all();
         $status = $this->status->all()->sortby('status');
         $civil = $this->civil->all()->sortby('estado_civil');
-        $planos = $this->planos->all()->sortby('plano');
+        $planos = $this->planos->planosAtivos()->sortby('plano');
         $parentescos = $this->parentescos->all()->sortby('parentesco');
         return view('contas.editar', compact('conta','estados','status','civil','planos','parentescos'));
     }

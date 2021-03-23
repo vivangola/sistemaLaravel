@@ -23,10 +23,11 @@
                           <table class="table table-bordered table-striped" id="tblDados">
                               <thead style="background-color: #364756; color: #fff;" >
                                   <tr class="text-center">
-                                      <th>Plano</th>
-                                      <th>Mensalidade</th>
-                                      <th>Depdendentes</th>
-                                      <th>Carência</th>
+                                      <th width="30%">Plano</th>
+                                      <th width="10%">Mensalidade</th>
+                                      <th width="15%">Status</th>
+                                      <th width="10%">Dependentes</th>
+                                      <th width="10%">Carência</th>
                                       <th></th>
                                   </tr>
                               </thead>
@@ -35,8 +36,21 @@
                                   <tr>
                                       <td class="text-center">{{ $dados->plano }}</td>
                                       <td class="text-center">{{ "R$ ".number_format($dados->mensalidade, 2, ',', '')}}</td>
+                                      <td align="center">
+                                        @if($dados->status->id == 1)
+                                            @php $btn = 'success'; @endphp
+                                        @elseif($dados->status->id == 2)
+                                            @php $btn = 'warning'; @endphp
+                                        @else
+                                            @php $btn = 'danger'; @endphp
+                                        @endif
+                                        <button type="button" class='btn btn-{{$btn}} btn-status'>
+                                                {{$dados->status->status}}
+                                        </button>
+                                      </td>
                                       <td class="text-center">{{ $dados->dependentes }}</td>
-                                      <td class="text-center">{{ $dados->carencia }}</td>
+                                      <td class="text-center">{{ $dados->carencia.($dados->carencia == 1 ? ' Mês' : ' Meses') }}</td>
+                                      
                                       <td align="center">
                                         <a href="{{url("planos/$dados->id/edit")}}">
                                           <button class="btn btn-primary">Editar</button>

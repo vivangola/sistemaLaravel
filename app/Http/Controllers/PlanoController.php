@@ -19,7 +19,7 @@ class PlanoController extends Controller
 
     public function index()
     {
-        $planos = $this->planos->all()->sortByDesc('mensalidade');
+        $planos = $this->planos->all()->sortByDesc('tipo_status_id');
         return view('planos.lista', compact('planos'));
     }
     
