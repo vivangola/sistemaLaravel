@@ -28,7 +28,6 @@
                                       <th>Depdendentes</th>
                                       <th>Carência</th>
                                       <th></th>
-                                      <th></th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -42,12 +41,6 @@
                                         <a href="{{url("planos/$dados->id/edit")}}">
                                           <button class="btn btn-primary">Editar</button>
                                         </a>
-                                      </td>
-                                      <td align="center">
-                                        {!! Form::open(['action' => ['PlanoController@destroy', $dados->id], 'method'=> 'POST', 'class' => 'alter']) !!}
-                                            {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
-                                        {!! Form::close() !!}
                                       </td>
                                   </tr>
                                 @endforeach
