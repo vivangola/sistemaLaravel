@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'sistema-funerario'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C97E5BFBBFBA4FC5BCA6891DB9E0EDA4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD6F38899D864E10A14B8760870D7E9D }}
           package: .
